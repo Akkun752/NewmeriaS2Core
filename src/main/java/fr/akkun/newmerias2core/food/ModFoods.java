@@ -8,4 +8,6 @@ public class ModFoods {
 
     // Light snack, like a small bag of rice
     public static final FoodProperties RICE = new FoodProperties.Builder().nutrition(3).saturationModifier(0.3f).build();
+
+    public static final FoodProperties CHILI_PEPPER = new FoodProperties.Builder().nutrition(4).saturationModifier(0.32f).build();
 }

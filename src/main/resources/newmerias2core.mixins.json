@@ -2,7 +2,9 @@
   "required": true,
   "package": "fr.akkun.newmerias2core.mixin",
   "compatibilityLevel": "JAVA_25",
-  "mixins": [],
+  "mixins": [
+    "EnchantmentMenuMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

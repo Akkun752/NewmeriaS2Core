@@ -19,6 +19,7 @@ public class ModModelProvider extends ModelProvider {
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
         itemModels.generateFlatItem(ModItems.PEER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.RICE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.CHILI_PEPPER.get(), ModelTemplates.FLAT_ITEM);
         blockModels.createCropBlock(ModBlocks.RICE_CROP.get(), RiceCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
 
         itemModels.generateFlatItem(ModItems.AKKUN_S1_TOTEM.get(), ModelTemplates.FLAT_ITEM);

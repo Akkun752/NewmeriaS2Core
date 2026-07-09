@@ -7,6 +7,8 @@ import fr.akkun.newmerias2core.data.ModDataComponents;
 import fr.akkun.newmerias2core.effect.ModEffects;
 import fr.akkun.newmerias2core.item.ModItems;
 import fr.akkun.newmerias2core.potion.ModPotions;
+import fr.akkun.newmerias2core.rpg.RpgAttachments;
+import fr.akkun.newmerias2core.rpg.network.RpgNetworking;
 import fr.akkun.newmerias2core.sound.ModSounds;
 import fr.akkun.newmerias2core.stat.ModStats;
 import net.neoforged.bus.api.IEventBus;
@@ -46,6 +48,9 @@ public class NewmeriaS2Core {
         ModEffects.register(modEventBus);
 
         ModPotions.register(modEventBus);
+
+        RpgAttachments.register(modEventBus);
+        RpgNetworking.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         // Register the item to a creative tab

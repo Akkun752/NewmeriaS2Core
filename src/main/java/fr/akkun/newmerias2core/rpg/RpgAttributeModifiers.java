@@ -1,0 +1,86 @@
+package fr.akkun.newmerias2core.rpg;
+
+import fr.akkun.newmerias2core.NewmeriaS2Core;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+
+/**
+ * Recomputes and applies the {@link AttributeModifier}s driven by RPG stats.
+ * Called on login, on respawn, and right after a stat point is spent.
+ */
+public class RpgAttributeModifiers {
+    private static final Identifier FORCE_ATTACK_DAMAGE = Identifier.fromNamespaceAndPath(NewmeriaS2Core.MOD_ID, "rpg_force_attack_damage");
+    private static final Identifier RESISTANCE_MAX_HEALTH = Identifier.fromNamespaceAndPath(NewmeriaS2Core.MOD_ID, "rpg_resistance_max_health");
+    private static final Identifier SPEED_MOVEMENT = Identifier.fromNamespaceAndPath(NewmeriaS2Core.MOD_ID, "rpg_speed_movement");
+    private static final Identifier SPEED_WATER_EFFICIENCY = Identifier.fromNamespaceAndPath(NewmeriaS2Core.MOD_ID, "rpg_speed_water_efficiency");
+
+    public static void apply(ServerPlayer player, RpgData data) {
+        applyModifier(player, Attributes.ATTACK_DAMAGE, FORCE_ATTACK_DAMAGE,
+                Math.max(0, data.forceLevel() - 1), AttributeModifier.Operation.ADD_VALUE);
+
+        applyModifier(player, Attributes.MAX_HEALTH, RESISTANCE_MAX_HEALTH,
+                Math.max(0, data.resistanceLevel() - 1) * 4.0, AttributeModifier.Operation.ADD_VALUE);
+
+        applyModifier(player, Attributes.MOVEMENT_SPEED, SPEED_MOVEMENT,
+                (data.speedLevel() - 1) * 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+
+        applyModifier(player, Attributes.WATER_MOVEMENT_EFFICIENCY, SPEED_WATER_EFFICIENCY,
+                waterEfficiencyBonus(data.speedLevel()), AttributeModifier.Operation.ADD_VALUE);
+    }
+
+    /**
+     * There is no literal "swim speed" attribute in this version; WATER_MOVEMENT_EFFICIENCY
+     * (0..1, same lever as Depth Strider) is the closest analog to reduce water drag.
+     */
+    private static double waterEfficiencyBonus(int speedLevel) {
+        if (speedLevel >= 5) {
+            return 0.65;
+        }
+        if (speedLevel >= 3) {
+            return 0.35;
+        }
+        return 0.0;
+    }
+
+    public static double miningSpeedMultiplier(int forceLevel) {
+        if (forceLevel >= 6) {
+            return 2.0;
+        }
+        if (forceLevel >= 4) {
+            return 1.5;
+        }
+        if (forceLevel >= 2) {
+            return 1.2;
+        }
+        return 1.0;
+    }
+
+    /** Used by {@code EnchantmentMenuMixin} to discount the enchanting table's displayed/required level cost. */
+    public static double enchantCostDivisor(int magicLevel) {
+        if (magicLevel >= 5) {
+            return 2.0;
+        }
+        if (magicLevel >= 3) {
+            return 1.5;
+        }
+        return 1.0;
+    }
+
+    private static void applyModifier(ServerPlayer player, Holder<Attribute> attribute, Identifier id,
+                                       double amount, AttributeModifier.Operation operation) {
+        AttributeInstance instance = player.getAttribute(attribute);
+        if (instance == null) {
+            return;
+        }
+        if (amount == 0) {
+            instance.removeModifier(id);
+        } else {
+            instance.addOrReplacePermanentModifier(new AttributeModifier(id, amount, operation));
+        }
+    }
+}

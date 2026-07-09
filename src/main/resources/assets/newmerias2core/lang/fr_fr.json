@@ -3,6 +3,7 @@
   "item.newmerias2core.rice_shoot": "Pousse de riz",
   "item.newmerias2core.rice": "Riz",
   "block.newmerias2core.rice_crop": "Culture de riz",
+  "item.newmerias2core.chili_pepper": "Piment",
 
   "creativetab.newmerias2core.newmeria": "Newmeria",
   "creativetab.newmerias2core.newmeria_special": "Newmeria Special",
@@ -20,5 +21,23 @@
   "item.newmerias2core.woohtyti_s1_totem.description": "Totem Newmeria Saison 1 de Woohtyti",
 
   "item.newmerias2core.bats_s1_totem": "Totem Bats",
-  "item.newmerias2core.bats_s1_totem.description": "Totem Newmeria Saison 1 de Bats"
+  "item.newmerias2core.bats_s1_totem.description": "Totem Newmeria Saison 1 de Bats",
+
+  "rpg.newmerias2core.stat.force": "Force",
+  "rpg.newmerias2core.stat.resistance": "Résistance",
+  "rpg.newmerias2core.stat.speed": "Vitesse",
+  "rpg.newmerias2core.stat.magic": "Magie",
+  "rpg.newmerias2core.level_up": "Niveau RPG %s ! Points de statistique disponibles : %s",
+
+  "gui.newmerias2core.stats.title": "Statistiques RPG",
+  "gui.newmerias2core.stats.level": "Niveau RPG : %s/%s",
+  "gui.newmerias2core.stats.next_level": "Points manquants pour le niveau suivant : %s",
+  "gui.newmerias2core.stats.row": "%s : niveau %s/%s",
+  "gui.newmerias2core.stats.points": "Points de statistique disponibles : %s",
+  "gui.newmerias2core.rpg_level": "%s",
+
+  "key.newmerias2core.open_stats": "Ouvrir les statistiques RPG",
+
+  "commands.newmerias2core.rpg.add_points": "%s points RPG ajoutés (niveau %s désormais, %s point(s) de statistique disponible(s))",
+  "commands.newmerias2core.rpg.add_level": "%s niveau(x) RPG ajouté(s) (niveau %s désormais, %s point(s) de statistique disponible(s))"
 }

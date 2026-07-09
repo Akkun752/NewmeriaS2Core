@@ -25,6 +25,9 @@ public class ModItems {
     public static final DeferredItem<Item> RICE = ITEMS.registerItem("rice",
             properties -> new Item(properties.food(ModFoods.RICE)));
 
+    public static final DeferredItem<Item> CHILI_PEPPER = ITEMS.registerItem("chili_pepper",
+            properties -> new Item(properties.food(ModFoods.CHILI_PEPPER)));
+
     public static final DeferredItem<Item> AKKUN_S1_TOTEM = ITEMS.registerItem("akkun_s1_totem",
             properties -> new TotemItem(properties.rarity(Rarity.EPIC).stacksTo(1), "item.newmerias2core.akkun_s1_totem.description"));
     public static final DeferredItem<Item> FALNIX_S1_TOTEM = ITEMS.registerItem("falnix_s1_totem",
