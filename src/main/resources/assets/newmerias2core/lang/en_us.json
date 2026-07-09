@@ -1,0 +1,24 @@
+{
+  "item.newmerias2core.peer": "Peer",
+  "item.newmerias2core.rice_shoot": "Rice Shoot",
+  "item.newmerias2core.rice": "Rice",
+  "block.newmerias2core.rice_crop": "Rice Crop",
+
+  "creativetab.newmerias2core.newmeria": "Newmeria",
+  "creativetab.newmerias2core.newmeria_special": "Newmeria Special",
+
+  "item.newmerias2core.akkun_s1_totem": "Akkun Totem",
+  "item.newmerias2core.akkun_s1_totem.description": "Akkun's Newmeria Season 1 Totem",
+
+  "item.newmerias2core.falnix_s1_totem": "Falnix Totem",
+  "item.newmerias2core.falnix_s1_totem.description": "Falnix's Newmeria Season 1 Totem",
+
+  "item.newmerias2core.raphaaile_s1_totem": "RaphaAile Totem",
+  "item.newmerias2core.raphaaile_s1_totem.description": "RaphaAile's Newmeria Season 1 Totem",
+
+  "item.newmerias2core.woohtyti_s1_totem": "Woohtyti Totem",
+  "item.newmerias2core.woohtyti_s1_totem.description": "Woohtyti's Newmeria Season 1 Totem",
+
+  "item.newmerias2core.bats_s1_totem": "Bats Totem",
+  "item.newmerias2core.bats_s1_totem.description": "Bats' Newmeria Season 1 Totem"
+}

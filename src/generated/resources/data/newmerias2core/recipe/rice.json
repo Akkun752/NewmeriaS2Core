@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "newmerias2core:rice_shoot"
+  ],
+  "result": {
+    "count": 4,
+    "id": "newmerias2core:rice"
+  }
+}

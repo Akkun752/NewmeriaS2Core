@@ -1,0 +1,24 @@
+{
+  "item.newmerias2core.peer": "Poire",
+  "item.newmerias2core.rice_shoot": "Pousse de riz",
+  "item.newmerias2core.rice": "Riz",
+  "block.newmerias2core.rice_crop": "Culture de riz",
+
+  "creativetab.newmerias2core.newmeria": "Newmeria",
+  "creativetab.newmerias2core.newmeria_special": "Newmeria Special",
+
+  "item.newmerias2core.akkun_s1_totem": "Totem Akkun",
+  "item.newmerias2core.akkun_s1_totem.description": "Totem Newmeria Saison 1 d'Akkun",
+
+  "item.newmerias2core.falnix_s1_totem": "Totem Falnix",
+  "item.newmerias2core.falnix_s1_totem.description": "Totem Newmeria Saison 1 de Falnix",
+
+  "item.newmerias2core.raphaaile_s1_totem": "Totem RaphaAile",
+  "item.newmerias2core.raphaaile_s1_totem.description": "Totem Newmeria Saison 1 de RaphaAile",
+
+  "item.newmerias2core.woohtyti_s1_totem": "Totem Woohtyti",
+  "item.newmerias2core.woohtyti_s1_totem.description": "Totem Newmeria Saison 1 de Woohtyti",
+
+  "item.newmerias2core.bats_s1_totem": "Totem Bats",
+  "item.newmerias2core.bats_s1_totem.description": "Totem Newmeria Saison 1 de Bats"
+}
