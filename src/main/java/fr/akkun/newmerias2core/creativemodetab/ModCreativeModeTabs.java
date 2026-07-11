@@ -15,17 +15,6 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, NewmeriaS2Core.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> NEWMERIA_SPECIAL_TAB = CREATIVE_MODE_TABS.register("newmeria_special_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.AKKUN_S1_TOTEM.get()))
-                    .title(Component.translatable("creativetab.newmerias2core.newmeria_special"))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.AKKUN_S1_TOTEM);
-                        output.accept(ModItems.BATS_S1_TOTEM);
-                        output.accept(ModItems.FALNIX_S1_TOTEM);
-                        output.accept(ModItems.RAPHAAILE_S1_TOTEM);
-                        output.accept(ModItems.WOOHTYTI_S1_TOTEM);
-                    }).build());
-
     public static final Supplier<CreativeModeTab> NEWMERIA_TAB = CREATIVE_MODE_TABS.register("newmeria_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.PEER.get()))
                     .title(Component.translatable("creativetab.newmerias2core.newmeria"))
@@ -34,6 +23,14 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.RICE_SHOOT);
                         output.accept(ModItems.RICE);
                         output.accept(ModItems.CHILI_PEPPER);
+                        output.accept(ModItems.CHILI_RICE);
+                        output.accept(ModItems.CHILI_SEEDS);
+
+                        output.accept(ModItems.AKKUN_S1_TOTEM);
+                        output.accept(ModItems.BATS_S1_TOTEM);
+                        output.accept(ModItems.FALNIX_S1_TOTEM);
+                        output.accept(ModItems.RAPHAAILE_S1_TOTEM);
+                        output.accept(ModItems.WOOHTYTI_S1_TOTEM);
                     }).build());
 
     public static void register(IEventBus eventBus) {

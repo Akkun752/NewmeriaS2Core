@@ -38,8 +38,18 @@ public class StatScreen extends Screen {
                     .build();
             this.buttons.put(stat, button);
             this.addRenderableWidget(button);
+
+            if (stat == RpgStat.MAGIC) {
+                this.addRenderableWidget(Button.builder(Component.literal("M"), b -> openMagicScreen())
+                        .bounds(centerX + 80 + BUTTON_WIDTH + 4, y, BUTTON_WIDTH, 20)
+                        .build());
+            }
         }
         refreshButtons();
+    }
+
+    private void openMagicScreen() {
+        Minecraft.getInstance().gui.setScreen(new MagicScreen());
     }
 
     @Override

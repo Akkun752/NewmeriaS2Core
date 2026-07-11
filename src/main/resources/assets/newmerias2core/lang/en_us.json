@@ -4,9 +4,11 @@
   "item.newmerias2core.rice": "Rice",
   "block.newmerias2core.rice_crop": "Rice Crop",
   "item.newmerias2core.chili_pepper": "Chili Pepper",
+  "item.newmerias2core.chili_rice": "Chili Rice",
+  "item.newmerias2core.chili_seeds": "Chili Seeds",
+  "block.newmerias2core.chili_crop": "Chili Plant",
 
   "creativetab.newmerias2core.newmeria": "Newmeria",
-  "creativetab.newmerias2core.newmeria_special": "Newmeria Special",
 
   "item.newmerias2core.akkun_s1_totem": "Akkun Totem",
   "item.newmerias2core.akkun_s1_totem.description": "Akkun's Newmeria Season 1 Totem",
@@ -37,7 +39,22 @@
   "gui.newmerias2core.rpg_level": "%s",
 
   "key.newmerias2core.open_stats": "Open RPG Stats",
+  "key.newmerias2core.cast_spell": "Cast Spell (Ctrl: Open Magic Menu)",
 
-  "commands.newmerias2core.rpg.add_points": "Added %s RPG points (now level %s, %s stat point(s) available)",
-  "commands.newmerias2core.rpg.add_level": "Added %s RPG level(s) (now level %s, %s stat point(s) available)"
+  "rpg.newmerias2core.spell.lightning": "Lightning",
+  "rpg.newmerias2core.spell.teleport": "Teleport",
+  "rpg.newmerias2core.spell.fireball": "Fireball",
+  "rpg.newmerias2core.spell.on_cooldown": "%s is on cooldown (%ss left)",
+
+  "gui.newmerias2core.magic.title": "Magic Spells",
+  "gui.newmerias2core.magic.select": "Select",
+  "gui.newmerias2core.magic.selected": "Selected",
+  "gui.newmerias2core.magic.locked": "Locked",
+  "gui.newmerias2core.magic.row_locked": "%s (requires Magic %s)",
+
+  "commands.newmerias2core.rpg.add_points": "Added %s RPG points to %s (now level %s, %s stat point(s) available)",
+  "commands.newmerias2core.rpg.add_level": "Added %s RPG level(s) to %s (now level %s, %s stat point(s) available)",
+  "commands.newmerias2core.rpg.remove_points": "Removed %s RPG points from %s (now level %s, %s stat point(s) available)",
+  "commands.newmerias2core.rpg.remove_level": "Removed %s RPG level(s) from %s (now level %s, %s stat point(s) available)",
+  "commands.newmerias2core.rpg.reset": "Reset all RPG progress for %s"
 }

@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.world.item.crafting.CookingBookCategory;
@@ -42,6 +43,18 @@ public class ModRecipeProvider extends RecipeProvider {
         shapeless(RecipeCategory.FOOD, ModItems.RICE.get(), 4)
                 .requires(ModItems.RICE_SHOOT)
                 .unlockedBy(getHasName(ModItems.RICE_SHOOT.get()), has(ModItems.RICE_SHOOT))
+                .save(output);
+
+        shapeless(RecipeCategory.FOOD, ModItems.CHILI_RICE.get())
+                .requires(Items.BOWL)
+                .requires(ModItems.RICE)
+                .requires(ModItems.CHILI_PEPPER)
+                .unlockedBy(getHasName(ModItems.CHILI_PEPPER.get()), has(ModItems.CHILI_PEPPER))
+                .save(output);
+
+        shapeless(RecipeCategory.FOOD, ModItems.CHILI_SEEDS.get(), 2)
+                .requires(ModItems.CHILI_PEPPER)
+                .unlockedBy(getHasName(ModItems.CHILI_PEPPER.get()), has(ModItems.CHILI_PEPPER))
                 .save(output);
     }
 

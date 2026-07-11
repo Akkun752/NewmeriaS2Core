@@ -60,12 +60,11 @@ public class RpgAttributeModifiers {
         return 1.0;
     }
 
-    /** Used by {@code EnchantmentMenuMixin} to discount the enchanting table's displayed/required level cost. */
-    public static double enchantCostDivisor(int magicLevel) {
-        if (magicLevel >= 5) {
+    public static double xpMultiplier(int magicLevel) {
+        if (magicLevel >= 6) {
             return 2.0;
         }
-        if (magicLevel >= 3) {
+        if (magicLevel >= 4) {
             return 1.5;
         }
         return 1.0;

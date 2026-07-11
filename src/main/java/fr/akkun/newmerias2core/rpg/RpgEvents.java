@@ -23,6 +23,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerXpEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 
@@ -56,6 +57,17 @@ public class RpgEvents {
         double multiplier = RpgAttributeModifiers.miningSpeedMultiplier(data.forceLevel());
         if (multiplier != 1.0) {
             event.setNewSpeed((float) (event.getNewSpeed() * multiplier));
+        }
+    }
+
+    @SubscribeEvent
+    public static void onXpChange(PlayerXpEvent.XpChange event) {
+        if (!(event.getEntity() instanceof ServerPlayer player) || event.getAmount() <= 0) {
+            return;
+        }
+        double multiplier = RpgAttributeModifiers.xpMultiplier(player.getData(RpgAttachments.RPG_DATA).magicLevel());
+        if (multiplier != 1.0) {
+            event.setAmount((int) Math.round(event.getAmount() * multiplier));
         }
     }
 

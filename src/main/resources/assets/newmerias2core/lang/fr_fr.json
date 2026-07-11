@@ -4,9 +4,11 @@
   "item.newmerias2core.rice": "Riz",
   "block.newmerias2core.rice_crop": "Culture de riz",
   "item.newmerias2core.chili_pepper": "Piment",
+  "item.newmerias2core.chili_rice": "Riz au chili",
+  "item.newmerias2core.chili_seeds": "Graines de piment",
+  "block.newmerias2core.chili_crop": "Plant de piment",
 
   "creativetab.newmerias2core.newmeria": "Newmeria",
-  "creativetab.newmerias2core.newmeria_special": "Newmeria Special",
 
   "item.newmerias2core.akkun_s1_totem": "Totem Akkun",
   "item.newmerias2core.akkun_s1_totem.description": "Totem Newmeria Saison 1 d'Akkun",
@@ -37,7 +39,22 @@
   "gui.newmerias2core.rpg_level": "%s",
 
   "key.newmerias2core.open_stats": "Ouvrir les statistiques RPG",
+  "key.newmerias2core.cast_spell": "Lancer un sort (Ctrl : ouvrir le menu des sorts)",
 
-  "commands.newmerias2core.rpg.add_points": "%s points RPG ajoutés (niveau %s désormais, %s point(s) de statistique disponible(s))",
-  "commands.newmerias2core.rpg.add_level": "%s niveau(x) RPG ajouté(s) (niveau %s désormais, %s point(s) de statistique disponible(s))"
+  "rpg.newmerias2core.spell.lightning": "Foudre",
+  "rpg.newmerias2core.spell.teleport": "Téléportation",
+  "rpg.newmerias2core.spell.fireball": "Boule de feu",
+  "rpg.newmerias2core.spell.on_cooldown": "%s est en recharge (%ss restantes)",
+
+  "gui.newmerias2core.magic.title": "Sorts de magie",
+  "gui.newmerias2core.magic.select": "Sélectionner",
+  "gui.newmerias2core.magic.selected": "Sélectionné",
+  "gui.newmerias2core.magic.locked": "Verrouillé",
+  "gui.newmerias2core.magic.row_locked": "%s (Magie %s requise)",
+
+  "commands.newmerias2core.rpg.add_points": "%s points RPG ajoutés à %s (niveau %s désormais, %s point(s) de statistique disponible(s))",
+  "commands.newmerias2core.rpg.add_level": "%s niveau(x) RPG ajouté(s) à %s (niveau %s désormais, %s point(s) de statistique disponible(s))",
+  "commands.newmerias2core.rpg.remove_points": "%s points RPG retirés à %s (niveau %s désormais, %s point(s) de statistique disponible(s))",
+  "commands.newmerias2core.rpg.remove_level": "%s niveau(x) RPG retiré(s) à %s (niveau %s désormais, %s point(s) de statistique disponible(s))",
+  "commands.newmerias2core.rpg.reset": "Progression RPG totalement réinitialisée pour %s"
 }

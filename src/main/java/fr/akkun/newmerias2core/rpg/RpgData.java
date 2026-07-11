@@ -8,14 +8,16 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 
 public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
-                       int forceLevel, int resistanceLevel, int speedLevel, int magicLevel) {
+                       int forceLevel, int resistanceLevel, int speedLevel, int magicLevel,
+                       int selectedSpell) {
     public static final int MIN_RPG_LEVEL = 1;
     public static final int MAX_RPG_LEVEL = 20;
     public static final int MIN_STAT_LEVEL = 1;
     public static final int MAX_STAT_LEVEL = 6;
+    public static final int NO_SPELL = -1;
 
     public static final RpgData DEFAULT = new RpgData(MIN_RPG_LEVEL, 0, 0,
-            MIN_STAT_LEVEL, MIN_STAT_LEVEL, MIN_STAT_LEVEL, MIN_STAT_LEVEL);
+            MIN_STAT_LEVEL, MIN_STAT_LEVEL, MIN_STAT_LEVEL, MIN_STAT_LEVEL, NO_SPELL);
 
     public static final MapCodec<RpgData> MAP_CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             Codec.INT.fieldOf("level").forGetter(RpgData::level),
@@ -24,7 +26,8 @@ public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
             Codec.INT.fieldOf("force_level").forGetter(RpgData::forceLevel),
             Codec.INT.fieldOf("resistance_level").forGetter(RpgData::resistanceLevel),
             Codec.INT.fieldOf("speed_level").forGetter(RpgData::speedLevel),
-            Codec.INT.fieldOf("magic_level").forGetter(RpgData::magicLevel)
+            Codec.INT.fieldOf("magic_level").forGetter(RpgData::magicLevel),
+            Codec.INT.fieldOf("selected_spell").forGetter(RpgData::selectedSpell)
     ).apply(instance, RpgData::new));
 
     public static final StreamCodec<ByteBuf, RpgData> STREAM_CODEC = StreamCodec.composite(
@@ -35,6 +38,7 @@ public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
             ByteBufCodecs.VAR_INT, RpgData::resistanceLevel,
             ByteBufCodecs.VAR_INT, RpgData::speedLevel,
             ByteBufCodecs.VAR_INT, RpgData::magicLevel,
+            ByteBufCodecs.VAR_INT, RpgData::selectedSpell,
             RpgData::new
     );
 
@@ -43,23 +47,32 @@ public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
     }
 
     public RpgData withForceLevel(int newLevel) {
-        return new RpgData(level, pointsIntoLevel, unspentStatPoints, newLevel, resistanceLevel, speedLevel, magicLevel);
+        return new RpgData(level, pointsIntoLevel, unspentStatPoints, newLevel, resistanceLevel, speedLevel, magicLevel, selectedSpell);
     }
 
     public RpgData withResistanceLevel(int newLevel) {
-        return new RpgData(level, pointsIntoLevel, unspentStatPoints, forceLevel, newLevel, speedLevel, magicLevel);
+        return new RpgData(level, pointsIntoLevel, unspentStatPoints, forceLevel, newLevel, speedLevel, magicLevel, selectedSpell);
     }
 
     public RpgData withSpeedLevel(int newLevel) {
-        return new RpgData(level, pointsIntoLevel, unspentStatPoints, forceLevel, resistanceLevel, newLevel, magicLevel);
+        return new RpgData(level, pointsIntoLevel, unspentStatPoints, forceLevel, resistanceLevel, newLevel, magicLevel, selectedSpell);
     }
 
     public RpgData withMagicLevel(int newLevel) {
-        return new RpgData(level, pointsIntoLevel, unspentStatPoints, forceLevel, resistanceLevel, speedLevel, newLevel);
+        RpgData updated = new RpgData(level, pointsIntoLevel, unspentStatPoints, forceLevel, resistanceLevel, speedLevel, newLevel, selectedSpell);
+        // Drop the current spell if it's no longer unlocked at the new Magic level.
+        if (selectedSpell != NO_SPELL && !RpgSpell.values()[selectedSpell].isUnlocked(newLevel)) {
+            return updated.withSelectedSpell(NO_SPELL);
+        }
+        return updated;
     }
 
     public RpgData withUnspentStatPoints(int newUnspent) {
-        return new RpgData(level, pointsIntoLevel, newUnspent, forceLevel, resistanceLevel, speedLevel, magicLevel);
+        return new RpgData(level, pointsIntoLevel, newUnspent, forceLevel, resistanceLevel, speedLevel, magicLevel, selectedSpell);
+    }
+
+    public RpgData withSelectedSpell(int newSelectedSpell) {
+        return new RpgData(level, pointsIntoLevel, unspentStatPoints, forceLevel, resistanceLevel, speedLevel, magicLevel, newSelectedSpell);
     }
 
     /**
@@ -85,7 +98,7 @@ public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
         if (newLevel >= MAX_RPG_LEVEL) {
             newPoints = 0;
         }
-        return new RpgData(newLevel, newPoints, newUnspent, forceLevel, resistanceLevel, speedLevel, magicLevel);
+        return new RpgData(newLevel, newPoints, newUnspent, forceLevel, resistanceLevel, speedLevel, magicLevel, selectedSpell);
     }
 
     /**
@@ -99,6 +112,45 @@ public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
         int newLevel = Math.min(MAX_RPG_LEVEL, level + amount);
         int gained = newLevel - level;
         int newPoints = newLevel >= MAX_RPG_LEVEL ? 0 : pointsIntoLevel;
-        return new RpgData(newLevel, newPoints, unspentStatPoints + gained, forceLevel, resistanceLevel, speedLevel, magicLevel);
+        return new RpgData(newLevel, newPoints, unspentStatPoints + gained, forceLevel, resistanceLevel, speedLevel, magicLevel, selectedSpell);
+    }
+
+    /**
+     * Removes RPG points, cascading level-downs (never below {@link #MIN_RPG_LEVEL}) using the
+     * same (level+1)*100 thresholds as {@link #addPoints}, refilling with the lower level's
+     * threshold minus whatever was still left to remove. One unspent stat point is reclaimed per
+     * level lost (never dropping already-spent stat levels, and never going negative).
+     */
+    public RpgData removePoints(int lost) {
+        if (lost <= 0) {
+            return this;
+        }
+        int newLevel = level;
+        int newPoints = pointsIntoLevel - lost;
+        int newUnspent = unspentStatPoints;
+        while (newPoints < 0 && newLevel > MIN_RPG_LEVEL) {
+            newLevel--;
+            newPoints += pointsToReachNextLevel(newLevel);
+            newUnspent = Math.max(0, newUnspent - 1);
+        }
+        if (newPoints < 0) {
+            newPoints = 0;
+        }
+        return new RpgData(newLevel, newPoints, newUnspent, forceLevel, resistanceLevel, speedLevel, magicLevel, selectedSpell);
+    }
+
+    /**
+     * Directly lowers the RPG level by {@code amount} (floored at {@link #MIN_RPG_LEVEL}),
+     * resetting progress into the new level to 0 and reclaiming one unspent stat point per level
+     * lost (never dropping already-spent stat levels, and never going negative).
+     */
+    public RpgData removeLevels(int amount) {
+        if (amount <= 0) {
+            return this;
+        }
+        int newLevel = Math.max(MIN_RPG_LEVEL, level - amount);
+        int actuallyLost = level - newLevel;
+        int newUnspent = Math.max(0, unspentStatPoints - actuallyLost);
+        return new RpgData(newLevel, 0, newUnspent, forceLevel, resistanceLevel, speedLevel, magicLevel, selectedSpell);
     }
 }

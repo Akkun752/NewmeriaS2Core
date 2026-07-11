@@ -34,22 +34,26 @@ public class RpgHudLayer {
     private static final int HEIGHT = 5;
     private static final int GAP = 1;
     private static final int SHIFT_UP = HEIGHT + GAP;
+    // Horizontal separation between the vanilla XP level number (moved left) and ours (moved right)
+    // so they stop overlapping since both would otherwise be centered on the same spot.
+    private static final int NUMBER_SHIFT_X = 7;
 
     @SubscribeEvent
     static void onRegisterGuiLayers(RegisterGuiLayersEvent event) {
         // Registered below the whole XP bar stack (background, level number, bar) so it renders
         // behind them instead of covering the vanilla XP level number.
         event.registerBelow(VanillaGuiLayers.CONTEXTUAL_INFO_BAR_BACKGROUND, LAYER_ID, RpgHudLayer::render);
-        event.wrapLayer(VanillaGuiLayers.PLAYER_HEALTH, layer -> shiftUp(layer, SHIFT_UP));
-        event.wrapLayer(VanillaGuiLayers.ARMOR_LEVEL, layer -> shiftUp(layer, SHIFT_UP));
-        event.wrapLayer(VanillaGuiLayers.FOOD_LEVEL, layer -> shiftUp(layer, SHIFT_UP));
-        event.wrapLayer(VanillaGuiLayers.AIR_LEVEL, layer -> shiftUp(layer, SHIFT_UP));
+        event.wrapLayer(VanillaGuiLayers.PLAYER_HEALTH, layer -> shift(layer, 0, -SHIFT_UP));
+        event.wrapLayer(VanillaGuiLayers.ARMOR_LEVEL, layer -> shift(layer, 0, -SHIFT_UP));
+        event.wrapLayer(VanillaGuiLayers.FOOD_LEVEL, layer -> shift(layer, 0, -SHIFT_UP));
+        event.wrapLayer(VanillaGuiLayers.AIR_LEVEL, layer -> shift(layer, 0, -SHIFT_UP));
+        event.wrapLayer(VanillaGuiLayers.EXPERIENCE_LEVEL, layer -> shift(layer, -NUMBER_SHIFT_X, 0));
     }
 
-    private static GuiLayer shiftUp(GuiLayer original, int offset) {
+    private static GuiLayer shift(GuiLayer original, int offsetX, int offsetY) {
         return (graphics, deltaTracker) -> {
             graphics.pose().pushMatrix();
-            graphics.pose().translate(0, -offset);
+            graphics.pose().translate(offsetX, offsetY);
             original.render(graphics, deltaTracker);
             graphics.pose().popMatrix();
         };
@@ -58,8 +62,9 @@ public class RpgHudLayer {
     private static void render(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker) {
         Minecraft minecraft = Minecraft.getInstance();
         LocalPlayer player = minecraft.player;
-        if (player == null || !minecraft.gameMode.canHurtPlayer()) {
-            // canHurtPlayer() is false in creative/spectator - same check vanilla uses to hide health/food/armor/air.
+        if (player == null || !minecraft.gameMode.canHurtPlayer() || minecraft.gui.hud.isHidden()) {
+            // canHurtPlayer() is false in creative/spectator (same check vanilla uses to hide
+            // health/food/armor/air); hud.isHidden() is the F1 "hide GUI" toggle.
             return;
         }
         RpgData data = player.getData(RpgAttachments.RPG_DATA);
@@ -87,7 +92,7 @@ public class RpgHudLayer {
 
     private static void drawLevelNumber(GuiGraphicsExtractor graphics, Minecraft minecraft, int level, int barTop) {
         Component str = Component.translatable("gui.newmerias2core.rpg_level", level);
-        int x = (graphics.guiWidth() - minecraft.font.width(str)) / 2;
+        int x = (graphics.guiWidth() - minecraft.font.width(str)) / 2 + NUMBER_SHIFT_X;
         int y = barTop - 6;
         graphics.text(minecraft.font, str, x + 1, y, -16777216, false);
         graphics.text(minecraft.font, str, x - 1, y, -16777216, false);

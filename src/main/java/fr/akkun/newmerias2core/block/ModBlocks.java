@@ -2,6 +2,7 @@ package fr.akkun.newmerias2core.block;
 
 import fr.akkun.newmerias2core.NewmeriaS2Core;
 import fr.akkun.newmerias2core.block.custom.RiceCropBlock;
+import fr.akkun.newmerias2core.block.custom.ChiliCropBlock;
 import fr.akkun.newmerias2core.item.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -63,5 +64,9 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> RICE_CROP = BLOCKS.registerBlock("rice_crop",
             properties -> new RiceCropBlock(properties.randomTicks().sound(SoundType.CROP)
+                    .instabreak().noCollision().pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredBlock<Block> CHILI_CROP = BLOCKS.registerBlock("chili_crop",
+            properties -> new ChiliCropBlock(properties.randomTicks().sound(SoundType.CROP)
                     .instabreak().noCollision().pushReaction(PushReaction.DESTROY)));
 }

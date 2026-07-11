@@ -6,8 +6,9 @@ import fr.akkun.newmerias2core.food.ModFoods;
 import fr.akkun.newmerias2core.item.custom.TotemItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.PlaceOnWaterBlockItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -20,13 +21,19 @@ public class ModItems {
             properties -> new Item(properties.food(ModFoods.PEER)));
 
     public static final DeferredItem<Item> RICE_SHOOT = ITEMS.registerItem("rice_shoot",
-            properties -> new PlaceOnWaterBlockItem(ModBlocks.RICE_CROP.get(), properties));
+            properties -> new BlockItem(ModBlocks.RICE_CROP.get(), properties));
 
     public static final DeferredItem<Item> RICE = ITEMS.registerItem("rice",
             properties -> new Item(properties.food(ModFoods.RICE)));
 
     public static final DeferredItem<Item> CHILI_PEPPER = ITEMS.registerItem("chili_pepper",
             properties -> new Item(properties.food(ModFoods.CHILI_PEPPER)));
+
+    public static final DeferredItem<Item> CHILI_SEEDS = ITEMS.registerItem("chili_seeds",
+            properties -> new BlockItem(ModBlocks.CHILI_CROP.get(), properties));
+
+    public static final DeferredItem<Item> CHILI_RICE = ITEMS.registerItem("chili_rice",
+            properties -> new Item(properties.stacksTo(1).food(ModFoods.CHILI_RICE, ModFoods.CHILI_RICE_CONSUMABLE).usingConvertsTo(Items.BOWL)));
 
     public static final DeferredItem<Item> AKKUN_S1_TOTEM = ITEMS.registerItem("akkun_s1_totem",
             properties -> new TotemItem(properties.rarity(Rarity.EPIC).stacksTo(1), "item.newmerias2core.akkun_s1_totem.description"));
