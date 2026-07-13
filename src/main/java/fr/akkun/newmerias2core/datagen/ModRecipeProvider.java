@@ -8,6 +8,8 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -80,6 +82,87 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('#', ModItems.SAPPHIRE.get())
                 .define('X', ModItems.OBSIDIAN_STICK.get())
                 .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.WOODEN_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', ItemTags.PLANKS)
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.STONE_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', ItemTags.STONE_TOOL_MATERIALS)
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(Blocks.COBBLESTONE), has(Blocks.COBBLESTONE))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.COPPER_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', Items.COPPER_INGOT)
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.IRON_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', Items.IRON_INGOT)
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.GOLDEN_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', Items.GOLD_INGOT)
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.DIAMOND_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', Items.DIAMOND)
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(output);
+
+        // Not using the vanilla netheriteSmithing() helper: it saves via a bare name parsed by
+        // Identifier.parse, which defaults to the "minecraft" namespace instead of ours.
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ModItems.DIAMOND_SPATULA.get()),
+                        tag(ItemTags.NETHERITE_TOOL_MATERIALS), RecipeCategory.TOOLS, ModItems.NETHERITE_SPATULA.get())
+                .unlocks("has_netherite_ingot", has(ItemTags.NETHERITE_TOOL_MATERIALS))
+                .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(ModItems.NETHERITE_SPATULA.get()) + "_smithing");
+
+        shaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.COMBAT, ModItems.HELL_SWORD.get())
+                .pattern("#")
+                .pattern("#")
+                .pattern("X")
+                .define('#', Items.NETHERITE_INGOT)
+                .define('X', Items.BLAZE_ROD)
+                .unlockedBy(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.HELL_SPATULA.get())
+                .pattern("#")
+                .pattern("X")
+                .define('#', Items.NETHERITE_INGOT)
+                .define('X', Items.BLAZE_ROD)
+                .unlockedBy(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
                 .save(output);
 
         twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BLACK_SANDSTONE.get(), ModBlocks.BLACK_SAND.get());

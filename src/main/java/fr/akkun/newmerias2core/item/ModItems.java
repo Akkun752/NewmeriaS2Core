@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.ToolMaterial;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -48,6 +49,29 @@ public class ModItems {
 
     public static final DeferredItem<Item> SNOW_WALKER_SPAWN_EGG = ITEMS.registerItem("snow_walker_spawn_egg",
             properties -> new SpawnEggItem(properties.spawnEgg(ModEntityTypes.SNOW_WALKER.get())));
+
+    public static final DeferredItem<Item> WOODEN_SPATULA = ITEMS.registerItem("wooden_spatula",
+            properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ToolMaterial.WOOD), 3.0F, -2.4F)));
+    public static final DeferredItem<Item> STONE_SPATULA = ITEMS.registerItem("stone_spatula",
+            properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ToolMaterial.STONE), 3.0F, -2.4F)));
+    public static final DeferredItem<Item> COPPER_SPATULA = ITEMS.registerItem("copper_spatula",
+            properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ToolMaterial.COPPER), 3.0F, -2.4F)));
+    public static final DeferredItem<Item> IRON_SPATULA = ITEMS.registerItem("iron_spatula",
+            properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ToolMaterial.IRON), 3.0F, -2.4F)));
+    public static final DeferredItem<Item> GOLDEN_SPATULA = ITEMS.registerItem("golden_spatula",
+            properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ToolMaterial.GOLD), 3.0F, -2.4F)));
+    public static final DeferredItem<Item> DIAMOND_SPATULA = ITEMS.registerItem("diamond_spatula",
+            properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ToolMaterial.DIAMOND), 3.0F, -2.4F)));
+    public static final DeferredItem<Item> NETHERITE_SPATULA = ITEMS.registerItem("netherite_spatula",
+            properties -> new SpatulaItem(properties.fireResistant().sword(ModToolTiers.halfDurability(ToolMaterial.NETHERITE), 3.0F, -2.4F)));
+
+    public static final DeferredItem<Item> SAPPHIRE_SPATULA = ITEMS.registerItem("sapphire_spatula",
+            properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ModToolTiers.SAPPHIRE), 3.0F, -2.4F)));
+
+    public static final DeferredItem<Item> HELL_SWORD = ITEMS.registerItem("hell_sword",
+            properties -> new HellSwordItem(properties.fireResistant().sword(ModToolTiers.HELL, 3.0F, -2.4F)));
+    public static final DeferredItem<Item> HELL_SPATULA = ITEMS.registerItem("hell_spatula",
+            properties -> new SpatulaItem(properties.fireResistant().sword(ModToolTiers.halfDurability(ModToolTiers.HELL), 3.0F, -2.4F), true));
 
     public static final DeferredItem<Item> SAPPHIRE_ORE = ITEMS.registerItem("sapphire_ore",
             properties -> new BlockItem(ModBlocks.SAPPHIRE_ORE.get(), properties.useBlockDescriptionPrefix()));

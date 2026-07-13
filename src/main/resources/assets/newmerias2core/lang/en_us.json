@@ -19,6 +19,17 @@
 
   "entity.newmerias2core.snow_walker": "Snow Walker",
 
+  "item.newmerias2core.wooden_spatula": "Wooden Spatula",
+  "item.newmerias2core.stone_spatula": "Stone Spatula",
+  "item.newmerias2core.copper_spatula": "Copper Spatula",
+  "item.newmerias2core.iron_spatula": "Iron Spatula",
+  "item.newmerias2core.golden_spatula": "Golden Spatula",
+  "item.newmerias2core.diamond_spatula": "Diamond Spatula",
+  "item.newmerias2core.netherite_spatula": "Netherite Spatula",
+  "item.newmerias2core.sapphire_spatula": "Sapphire Spatula",
+  "item.newmerias2core.hell_sword": "Hell Sword",
+  "item.newmerias2core.hell_spatula": "Hell Spatula",
+
   "block.newmerias2core.black_sand": "Black Sand",
   "block.newmerias2core.black_sandstone": "Black Sandstone",
   "block.newmerias2core.chiseled_black_sandstone": "Chiseled Black Sandstone",

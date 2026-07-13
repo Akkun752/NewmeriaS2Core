@@ -19,6 +19,17 @@
 
   "entity.newmerias2core.snow_walker": "Marcheur de neige",
 
+  "item.newmerias2core.wooden_spatula": "Spatule en bois",
+  "item.newmerias2core.stone_spatula": "Spatule en pierre",
+  "item.newmerias2core.copper_spatula": "Spatule en cuivre",
+  "item.newmerias2core.iron_spatula": "Spatule en fer",
+  "item.newmerias2core.golden_spatula": "Spatule en or",
+  "item.newmerias2core.diamond_spatula": "Spatule en diamant",
+  "item.newmerias2core.netherite_spatula": "Spatule en netherite",
+  "item.newmerias2core.sapphire_spatula": "Spatule en saphir",
+  "item.newmerias2core.hell_sword": "Épée des Enfers",
+  "item.newmerias2core.hell_spatula": "Spatule des Enfers",
+
   "block.newmerias2core.black_sand": "Sable noir",
   "block.newmerias2core.black_sandstone": "Grès noir",
   "block.newmerias2core.chiseled_black_sandstone": "Grès noir ciselé",

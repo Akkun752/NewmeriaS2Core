@@ -21,6 +21,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(ItemTags.SMELTS_TO_GLASS).add(ModItems.getRK(ModItems.BLACK_SAND.get()));
 
         tag(ModToolTiers.SAPPHIRE_TOOL_MATERIALS).add(ModItems.getRK(ModItems.SAPPHIRE.get()));
-        tag(ModToolTiers.SAPPHIRE_TOOLS).add(ModItems.getRK(ModItems.SAPPHIRE_SWORD.get()));
+        tag(ModToolTiers.SAPPHIRE_TOOLS).add(ModItems.getRK(ModItems.SAPPHIRE_SWORD.get()), ModItems.getRK(ModItems.SAPPHIRE_SPATULA.get()));
+
+        tag(ModToolTiers.HELL_TOOLS).add(ModItems.getRK(ModItems.HELL_SWORD.get()), ModItems.getRK(ModItems.HELL_SPATULA.get()));
     }
 }

@@ -30,7 +30,7 @@ import org.jspecify.annotations.Nullable;
 /**
  * Game of Thrones-inspired "White Walker": a zombie-shaped raider that is hostile to every other
  * living thing (including passive animals), permanently wields a {@link ModItems#SAPPHIRE_SWORD},
- * and is immune to everything except fire, explosions, and sapphire tools.
+ * and is immune to everything except fire, explosions, and sapphire/Hell tools.
  */
 public class SnowWalker extends Zombie {
     private static final EntityDataAccessor<Integer> DATA_TEXTURE_VARIANT =
@@ -63,6 +63,15 @@ public class SnowWalker extends Zombie {
     ) {
         this.getEntityData().set(DATA_TEXTURE_VARIANT, this.random.nextInt(2));
         return super.finalizeSpawn(level, difficulty, spawnReason, groupData);
+    }
+
+    @Override
+    public void setBaby(boolean baby) {
+        // Snow Walkers never spawn as babies - blocking this here (rather than just in finalizeSpawn)
+        // also covers using a matching spawn egg on an existing Snow Walker, which spawns "offspring"
+        // through a separate code path (SpawnEggItem.spawnOffspringFromSpawnEgg) that forces
+        // setBaby(true) directly and never goes through finalizeSpawn at all.
+        super.setBaby(false);
     }
 
     @Override
@@ -102,7 +111,11 @@ public class SnowWalker extends Zombie {
         if (source.is(DamageTypeTags.IS_FIRE) || source.is(DamageTypeTags.IS_EXPLOSION)) {
             return true;
         }
-        return source.getEntity() instanceof LivingEntity attacker && attacker.getMainHandItem().is(ModToolTiers.SAPPHIRE_TOOLS);
+        if (!(source.getEntity() instanceof LivingEntity attacker)) {
+            return false;
+        }
+        ItemStack weapon = attacker.getMainHandItem();
+        return weapon.is(ModToolTiers.SAPPHIRE_TOOLS) || weapon.is(ModToolTiers.HELL_TOOLS);
     }
 
     @Override

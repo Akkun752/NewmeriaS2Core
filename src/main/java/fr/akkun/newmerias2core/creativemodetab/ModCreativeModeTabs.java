@@ -41,6 +41,17 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SAPPHIRE_SWORD);
                         output.accept(ModItems.SNOW_WALKER_SPAWN_EGG);
 
+                        output.accept(ModItems.WOODEN_SPATULA);
+                        output.accept(ModItems.STONE_SPATULA);
+                        output.accept(ModItems.COPPER_SPATULA);
+                        output.accept(ModItems.IRON_SPATULA);
+                        output.accept(ModItems.GOLDEN_SPATULA);
+                        output.accept(ModItems.DIAMOND_SPATULA);
+                        output.accept(ModItems.NETHERITE_SPATULA);
+                        output.accept(ModItems.SAPPHIRE_SPATULA);
+                        output.accept(ModItems.HELL_SWORD);
+                        output.accept(ModItems.HELL_SPATULA);
+
                         output.accept(ModItems.BLACK_SAND);
                         output.accept(ModItems.BLACK_SANDSTONE);
                         output.accept(ModItems.CHISELED_BLACK_SANDSTONE);

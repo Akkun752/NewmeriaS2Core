@@ -31,6 +31,17 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.SAPPHIRE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         // Custom flat texture instead of vanilla's two-colour spawn egg rendering.
         itemModels.generateFlatItem(ModItems.SNOW_WALKER_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
+
+        itemModels.generateFlatItem(ModItems.WOODEN_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.STONE_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.COPPER_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.IRON_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.GOLDEN_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.DIAMOND_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.NETHERITE_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.HELL_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.HELL_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         blockModels.createCropBlock(ModBlocks.RICE_CROP.get(), CropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
         blockModels.createCropBlock(ModBlocks.CHILI_CROP.get(), BeetrootBlock.AGE, 0, 1, 2, 3);
 
