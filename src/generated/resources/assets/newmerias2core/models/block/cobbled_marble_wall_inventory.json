@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "newmerias2core:block/cobbled_marble"
+  }
+}

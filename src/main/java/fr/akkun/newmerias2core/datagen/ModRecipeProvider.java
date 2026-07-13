@@ -1,18 +1,21 @@
 package fr.akkun.newmerias2core.datagen;
 
 import fr.akkun.newmerias2core.NewmeriaS2Core;
+import fr.akkun.newmerias2core.block.ModBlocks;
 import fr.akkun.newmerias2core.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -56,6 +59,42 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(ModItems.CHILI_PEPPER)
                 .unlockedBy(getHasName(ModItems.CHILI_PEPPER.get()), has(ModItems.CHILI_PEPPER))
                 .save(output);
+
+        shapeless(RecipeCategory.FOOD, ModItems.SANDWICH.get())
+                .requires(Items.BREAD)
+                .requires(Items.PORKCHOP)
+                .unlockedBy(getHasName(Items.PORKCHOP), has(Items.PORKCHOP))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.OBSIDIAN_STICK.get(), 4)
+                .pattern("#")
+                .pattern("#")
+                .define('#', Items.OBSIDIAN)
+                .unlockedBy(getHasName(Items.OBSIDIAN), has(Items.OBSIDIAN))
+                .save(output);
+
+        twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BLACK_SANDSTONE.get(), ModBlocks.BLACK_SAND.get());
+        smeltingResultFromBase(ModBlocks.SMOOTH_BLACK_SANDSTONE.get(), ModBlocks.BLACK_SANDSTONE.get());
+
+        generateRecipes(ModBlockFamilies.BLACK_SANDSTONE, FeatureFlags.REGISTRY.allFlags());
+        generateRecipes(ModBlockFamilies.CUT_BLACK_SANDSTONE, FeatureFlags.REGISTRY.allFlags());
+        generateRecipes(ModBlockFamilies.SMOOTH_BLACK_SANDSTONE, FeatureFlags.REGISTRY.allFlags());
+        generateRecipes(ModBlockFamilies.MARBLE, FeatureFlags.REGISTRY.allFlags());
+        generateRecipes(ModBlockFamilies.MARBLE_BRICKS, FeatureFlags.REGISTRY.allFlags());
+        generateRecipes(ModBlockFamilies.MOSSY_MARBLE_BRICKS, FeatureFlags.REGISTRY.allFlags());
+        generateRecipes(ModBlockFamilies.COBBLED_MARBLE, FeatureFlags.REGISTRY.allFlags());
+
+        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_MARBLE_BRICKS.get())
+                .requires(ModBlocks.MARBLE_BRICKS.get())
+                .requires(Blocks.VINE)
+                .unlockedBy(getHasName(ModBlocks.MARBLE_BRICKS.get()), has(ModBlocks.MARBLE_BRICKS.get()))
+                .save(output, getConversionRecipeName(ModBlocks.MOSSY_MARBLE_BRICKS.get(), Blocks.VINE));
+
+        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MOSSY_MARBLE_BRICKS.get())
+                .requires(ModBlocks.MARBLE_BRICKS.get())
+                .requires(Blocks.MOSS_BLOCK)
+                .unlockedBy(getHasName(ModBlocks.MARBLE_BRICKS.get()), has(ModBlocks.MARBLE_BRICKS.get()))
+                .save(output, getConversionRecipeName(ModBlocks.MOSSY_MARBLE_BRICKS.get(), Blocks.MOSS_BLOCK));
     }
 
     @Override

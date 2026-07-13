@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "newmerias2core:marble",
+  "result": {
+    "id": "newmerias2core:marble_stairs"
+  }
+}

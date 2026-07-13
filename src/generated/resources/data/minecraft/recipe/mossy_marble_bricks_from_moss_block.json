@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "newmerias2core:marble_bricks",
+    "minecraft:moss_block"
+  ],
+  "result": {
+    "id": "newmerias2core:mossy_marble_bricks"
+  }
+}

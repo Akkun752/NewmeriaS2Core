@@ -35,6 +35,86 @@ public class ModItems {
     public static final DeferredItem<Item> CHILI_RICE = ITEMS.registerItem("chili_rice",
             properties -> new Item(properties.stacksTo(1).food(ModFoods.CHILI_RICE, ModFoods.CHILI_RICE_CONSUMABLE).usingConvertsTo(Items.BOWL)));
 
+    public static final DeferredItem<Item> SANDWICH = ITEMS.registerItem("sandwich",
+            properties -> new Item(properties.food(ModFoods.SANDWICH)));
+
+    public static final DeferredItem<Item> SAPPHIRE = ITEMS.registerItem("sapphire",
+            properties -> new Item(properties));
+
+    public static final DeferredItem<Item> SAPPHIRE_ORE = ITEMS.registerItem("sapphire_ore",
+            properties -> new BlockItem(ModBlocks.SAPPHIRE_ORE.get(), properties.useBlockDescriptionPrefix()));
+
+    public static final DeferredItem<Item> DEEPSLATE_SAPPHIRE_ORE = ITEMS.registerItem("deepslate_sapphire_ore",
+            properties -> new BlockItem(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), properties.useBlockDescriptionPrefix()));
+
+    public static final DeferredItem<Item> SAPPHIRE_BLOCK = ITEMS.registerItem("sapphire_block",
+            properties -> new BlockItem(ModBlocks.SAPPHIRE_BLOCK.get(), properties.useBlockDescriptionPrefix()));
+
+    public static final DeferredItem<Item> OBSIDIAN_STICK = ITEMS.registerItem("obsidian_stick",
+            properties -> new Item(properties));
+
+    public static final DeferredItem<Item> BLACK_SAND = ITEMS.registerItem("black_sand",
+            properties -> new BlockItem(ModBlocks.BLACK_SAND.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> BLACK_SANDSTONE = ITEMS.registerItem("black_sandstone",
+            properties -> new BlockItem(ModBlocks.BLACK_SANDSTONE.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> CHISELED_BLACK_SANDSTONE = ITEMS.registerItem("chiseled_black_sandstone",
+            properties -> new BlockItem(ModBlocks.CHISELED_BLACK_SANDSTONE.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> CUT_BLACK_SANDSTONE = ITEMS.registerItem("cut_black_sandstone",
+            properties -> new BlockItem(ModBlocks.CUT_BLACK_SANDSTONE.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> SMOOTH_BLACK_SANDSTONE = ITEMS.registerItem("smooth_black_sandstone",
+            properties -> new BlockItem(ModBlocks.SMOOTH_BLACK_SANDSTONE.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> BLACK_SANDSTONE_SLAB = ITEMS.registerItem("black_sandstone_slab",
+            properties -> new BlockItem(ModBlocks.BLACK_SANDSTONE_SLAB.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> CUT_BLACK_SANDSTONE_SLAB = ITEMS.registerItem("cut_black_sandstone_slab",
+            properties -> new BlockItem(ModBlocks.CUT_BLACK_SANDSTONE_SLAB.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> SMOOTH_BLACK_SANDSTONE_SLAB = ITEMS.registerItem("smooth_black_sandstone_slab",
+            properties -> new BlockItem(ModBlocks.SMOOTH_BLACK_SANDSTONE_SLAB.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> BLACK_SANDSTONE_STAIRS = ITEMS.registerItem("black_sandstone_stairs",
+            properties -> new BlockItem(ModBlocks.BLACK_SANDSTONE_STAIRS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> SMOOTH_BLACK_SANDSTONE_STAIRS = ITEMS.registerItem("smooth_black_sandstone_stairs",
+            properties -> new BlockItem(ModBlocks.SMOOTH_BLACK_SANDSTONE_STAIRS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> BLACK_SANDSTONE_WALL = ITEMS.registerItem("black_sandstone_wall",
+            properties -> new BlockItem(ModBlocks.BLACK_SANDSTONE_WALL.get(), properties.useBlockDescriptionPrefix()));
+
+    public static final DeferredItem<Item> MARBLE = ITEMS.registerItem("marble",
+            properties -> new BlockItem(ModBlocks.MARBLE.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> COBBLED_MARBLE = ITEMS.registerItem("cobbled_marble",
+            properties -> new BlockItem(ModBlocks.COBBLED_MARBLE.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> COBBLED_MARBLE_STAIRS = ITEMS.registerItem("cobbled_marble_stairs",
+            properties -> new BlockItem(ModBlocks.COBBLED_MARBLE_STAIRS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> COBBLED_MARBLE_SLAB = ITEMS.registerItem("cobbled_marble_slab",
+            properties -> new BlockItem(ModBlocks.COBBLED_MARBLE_SLAB.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> COBBLED_MARBLE_WALL = ITEMS.registerItem("cobbled_marble_wall",
+            properties -> new BlockItem(ModBlocks.COBBLED_MARBLE_WALL.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_PRESSURE_PLATE = ITEMS.registerItem("marble_pressure_plate",
+            properties -> new BlockItem(ModBlocks.MARBLE_PRESSURE_PLATE.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_BUTTON = ITEMS.registerItem("marble_button",
+            properties -> new BlockItem(ModBlocks.MARBLE_BUTTON.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_SLAB = ITEMS.registerItem("marble_slab",
+            properties -> new BlockItem(ModBlocks.MARBLE_SLAB.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_STAIRS = ITEMS.registerItem("marble_stairs",
+            properties -> new BlockItem(ModBlocks.MARBLE_STAIRS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_BRICKS = ITEMS.registerItem("marble_bricks",
+            properties -> new BlockItem(ModBlocks.MARBLE_BRICKS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> CHISELED_MARBLE_BRICKS = ITEMS.registerItem("chiseled_marble_bricks",
+            properties -> new BlockItem(ModBlocks.CHISELED_MARBLE_BRICKS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> CRACKED_MARBLE_BRICKS = ITEMS.registerItem("cracked_marble_bricks",
+            properties -> new BlockItem(ModBlocks.CRACKED_MARBLE_BRICKS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_BRICK_SLAB = ITEMS.registerItem("marble_brick_slab",
+            properties -> new BlockItem(ModBlocks.MARBLE_BRICK_SLAB.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_BRICK_STAIRS = ITEMS.registerItem("marble_brick_stairs",
+            properties -> new BlockItem(ModBlocks.MARBLE_BRICK_STAIRS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MARBLE_BRICK_WALL = ITEMS.registerItem("marble_brick_wall",
+            properties -> new BlockItem(ModBlocks.MARBLE_BRICK_WALL.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MOSSY_MARBLE_BRICKS = ITEMS.registerItem("mossy_marble_bricks",
+            properties -> new BlockItem(ModBlocks.MOSSY_MARBLE_BRICKS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MOSSY_MARBLE_BRICK_SLAB = ITEMS.registerItem("mossy_marble_brick_slab",
+            properties -> new BlockItem(ModBlocks.MOSSY_MARBLE_BRICK_SLAB.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MOSSY_MARBLE_BRICK_STAIRS = ITEMS.registerItem("mossy_marble_brick_stairs",
+            properties -> new BlockItem(ModBlocks.MOSSY_MARBLE_BRICK_STAIRS.get(), properties.useBlockDescriptionPrefix()));
+    public static final DeferredItem<Item> MOSSY_MARBLE_BRICK_WALL = ITEMS.registerItem("mossy_marble_brick_wall",
+            properties -> new BlockItem(ModBlocks.MOSSY_MARBLE_BRICK_WALL.get(), properties.useBlockDescriptionPrefix()));
+
     public static final DeferredItem<Item> AKKUN_S1_TOTEM = ITEMS.registerItem("akkun_s1_totem",
             properties -> new TotemItem(properties.rarity(Rarity.EPIC).stacksTo(1), "item.newmerias2core.akkun_s1_totem.description"));
     public static final DeferredItem<Item> FALNIX_S1_TOTEM = ITEMS.registerItem("falnix_s1_totem",

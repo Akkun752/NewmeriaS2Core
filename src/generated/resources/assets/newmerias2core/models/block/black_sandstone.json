@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "newmerias2core:block/black_sandstone_bottom",
+    "side": "newmerias2core:block/black_sandstone",
+    "top": "newmerias2core:block/black_sandstone_top"
+  }
+}

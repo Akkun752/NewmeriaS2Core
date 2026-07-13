@@ -9,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.projectile.hurtingprojectile.LargeFireball;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -22,6 +21,8 @@ import java.util.UUID;
 /** Server-side spell execution and (in-memory, non-persisted) per-player cooldown tracking. */
 public class SpellCasting {
     private static final Map<UUID, EnumMap<RpgSpell, Long>> COOLDOWN_END_TICK = new HashMap<>();
+    // Damage/blast size multiplier over vanilla lightning/ghast-fireball defaults.
+    private static final float POWER_MULTIPLIER = 3.0F;
 
     public static void cast(ServerPlayer player) {
         RpgData data = player.getData(RpgAttachments.RPG_DATA);
@@ -33,15 +34,17 @@ public class SpellCasting {
             return;
         }
 
-        long now = player.level().getGameTime();
-        Map<RpgSpell, Long> cooldowns = COOLDOWN_END_TICK.computeIfAbsent(player.getUUID(), k -> new EnumMap<>(RpgSpell.class));
-        Long endTick = cooldowns.get(spell);
-        if (endTick != null && now < endTick) {
-            long remainingSeconds = (endTick - now) / 20 + 1;
-            player.sendSystemMessage(Component.translatable("rpg.newmerias2core.spell.on_cooldown", spell.displayName(), remainingSeconds), true);
-            return;
+        if (!player.isCreative()) {
+            long now = player.level().getGameTime();
+            Map<RpgSpell, Long> cooldowns = COOLDOWN_END_TICK.computeIfAbsent(player.getUUID(), k -> new EnumMap<>(RpgSpell.class));
+            Long endTick = cooldowns.get(spell);
+            if (endTick != null && now < endTick) {
+                long remainingSeconds = (endTick - now) / 20 + 1;
+                player.sendSystemMessage(Component.translatable("rpg.newmerias2core.spell.on_cooldown", spell.displayName(), remainingSeconds), true);
+                return;
+            }
+            cooldowns.put(spell, now + spell.cooldownTicks());
         }
-        cooldowns.put(spell, now + spell.cooldownTicks());
 
         switch (spell) {
             case LIGHTNING -> castLightning(player);
@@ -60,6 +63,7 @@ public class SpellCasting {
         }
         bolt.setPos(target.x, target.y, target.z);
         bolt.setCause(player);
+        bolt.setDamage(bolt.getDamage() * POWER_MULTIPLIER);
         level.addFreshEntity(bolt);
     }
 
@@ -78,7 +82,10 @@ public class SpellCasting {
     private static void castFireball(ServerPlayer player) {
         ServerLevel level = player.level();
         Vec3 direction = player.getLookAngle();
-        LargeFireball fireball = new LargeFireball(level, player, direction, 1);
+        // Vanilla ghast fireballs: explosion power 1, 6.0F direct-hit damage.
+        int explosionPower = Math.round(1 * POWER_MULTIPLIER);
+        float directHitDamage = 6.0F * POWER_MULTIPLIER;
+        RpgLargeFireball fireball = new RpgLargeFireball(level, player, direction, explosionPower, directHitDamage);
         fireball.setPos(player.getX(), player.getEyeY(), player.getZ());
         level.addFreshEntity(fireball);
     }

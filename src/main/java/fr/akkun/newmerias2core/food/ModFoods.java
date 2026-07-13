@@ -26,4 +26,8 @@ public class ModFoods {
                     new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1200),
                     new MobEffectInstance(MobEffects.REGENERATION, 100)
             ))).build();
+
+    // Bread (nutrition 5, saturationModifier 0.6) + Cooked Porkchop (nutrition 8, saturationModifier 0.8)
+    // combined: nutrition 13, saturation restored 6.0+12.8=18.8 -> saturationModifier = 18.8/(13*2)
+    public static final FoodProperties SANDWICH = new FoodProperties.Builder().nutrition(13).saturationModifier(0.7230769f).build();
 }

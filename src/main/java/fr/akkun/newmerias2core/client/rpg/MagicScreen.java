@@ -78,7 +78,6 @@ public class MagicScreen extends Screen {
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
         super.extractRenderState(graphics, mouseX, mouseY, partialTick);
-        RpgData data = currentData();
         int top = topOfRows();
         int centerX = this.width / 2;
 
@@ -87,10 +86,7 @@ public class MagicScreen extends Screen {
         for (int i = 0; i < SPELLS.length; i++) {
             RpgSpell spell = SPELLS[i];
             int y = top + i * ROW_HEIGHT + 6;
-            Component label = spell.isUnlocked(data.magicLevel())
-                    ? spell.displayName()
-                    : Component.translatable("gui.newmerias2core.magic.row_locked", spell.displayName(), spell.requiredMagicLevel());
-            graphics.text(this.font, label, centerX - 100, y, -1);
+            graphics.text(this.font, spell.displayName(), centerX - 100, y, -1);
         }
     }
 }

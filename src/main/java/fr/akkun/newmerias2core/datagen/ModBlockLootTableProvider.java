@@ -60,6 +60,31 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BeetrootBlock.AGE, 3))));
 
         addPeerDropsToAllLeaves();
+
+        add(ModBlocks.SAPPHIRE_ORE.get(), createOreDrop(ModBlocks.SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get()));
+        add(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), createOreDrop(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get()));
+        dropSelf(ModBlocks.SAPPHIRE_BLOCK.get());
+
+        List<Block> selfDropping = List.of(
+                ModBlocks.BLACK_SAND.get(), ModBlocks.BLACK_SANDSTONE.get(), ModBlocks.CHISELED_BLACK_SANDSTONE.get(),
+                ModBlocks.CUT_BLACK_SANDSTONE.get(), ModBlocks.SMOOTH_BLACK_SANDSTONE.get(), ModBlocks.BLACK_SANDSTONE_STAIRS.get(),
+                ModBlocks.SMOOTH_BLACK_SANDSTONE_STAIRS.get(), ModBlocks.BLACK_SANDSTONE_WALL.get(),
+                ModBlocks.COBBLED_MARBLE.get(), ModBlocks.MARBLE_STAIRS.get(), ModBlocks.MARBLE_BRICKS.get(),
+                ModBlocks.CHISELED_MARBLE_BRICKS.get(), ModBlocks.CRACKED_MARBLE_BRICKS.get(), ModBlocks.MARBLE_BRICK_STAIRS.get(),
+                ModBlocks.MARBLE_BRICK_WALL.get(), ModBlocks.MOSSY_MARBLE_BRICKS.get(), ModBlocks.MOSSY_MARBLE_BRICK_STAIRS.get(),
+                ModBlocks.MOSSY_MARBLE_BRICK_WALL.get(), ModBlocks.COBBLED_MARBLE_STAIRS.get(), ModBlocks.COBBLED_MARBLE_WALL.get(),
+                ModBlocks.MARBLE_PRESSURE_PLATE.get(), ModBlocks.MARBLE_BUTTON.get()
+        );
+        selfDropping.forEach(this::dropSelf);
+
+        add(ModBlocks.MARBLE.get(), createSingleItemTableWithSilkTouch(ModBlocks.MARBLE.get(), ModBlocks.COBBLED_MARBLE.get()));
+
+        List<Block> slabs = List.of(
+                ModBlocks.BLACK_SANDSTONE_SLAB.get(), ModBlocks.CUT_BLACK_SANDSTONE_SLAB.get(), ModBlocks.SMOOTH_BLACK_SANDSTONE_SLAB.get(),
+                ModBlocks.MARBLE_SLAB.get(), ModBlocks.MARBLE_BRICK_SLAB.get(), ModBlocks.MOSSY_MARBLE_BRICK_SLAB.get(),
+                ModBlocks.COBBLED_MARBLE_SLAB.get()
+        );
+        slabs.forEach(slab -> add(slab, createSlabItemTable(slab)));
     }
 
     /** Every leaf type keeps its normal drops (sticks, sapling, and oak/dark oak's apple), plus a peer drop -

@@ -33,5 +33,8 @@ public class NewmeriaS2CoreDataGen {
 
         generator.addProvider(true, new ModSoundsProvider(packOutput));
         generator.addProvider(true, new ModAdvancements(packOutput, lookupProvider));
+
+        generator.addProvider(true, new ModBlockTagsProvider(packOutput, lookupProvider));
+        generator.addProvider(true, new ModItemTagsProvider(packOutput, lookupProvider));
     }
 }

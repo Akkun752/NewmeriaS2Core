@@ -81,8 +81,9 @@ public class RpgCommand {
     }
 
     private static int reset(CommandSourceStack source, ServerPlayer target) {
-        target.setData(RpgAttachments.RPG_DATA, RpgData.DEFAULT);
-        RpgAttributeModifiers.apply(target, RpgData.DEFAULT);
+        RpgData reset = RpgData.DEFAULT.withUnspentStatPoints(1);
+        target.setData(RpgAttachments.RPG_DATA, reset);
+        RpgAttributeModifiers.apply(target, reset);
         source.sendSuccess(() -> Component.translatable("commands.newmerias2core.rpg.reset", target.getName()), true);
         return 1;
     }

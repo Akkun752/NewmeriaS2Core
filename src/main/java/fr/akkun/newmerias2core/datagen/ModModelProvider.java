@@ -7,6 +7,9 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.CropBlock;
@@ -22,8 +25,60 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.RICE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.CHILI_PEPPER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.CHILI_RICE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SANDWICH.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.OBSIDIAN_STICK.get(), ModelTemplates.FLAT_ITEM);
         blockModels.createCropBlock(ModBlocks.RICE_CROP.get(), CropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
         blockModels.createCropBlock(ModBlocks.CHILI_CROP.get(), BeetrootBlock.AGE, 0, 1, 2, 3);
+
+        blockModels.createTrivialCube(ModBlocks.SAPPHIRE_ORE.get());
+        blockModels.createTrivialCube(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+        blockModels.createTrivialCube(ModBlocks.SAPPHIRE_BLOCK.get());
+
+        blockModels.createTrivialCube(ModBlocks.BLACK_SAND.get());
+
+        // black_sandstone needs proper top/bottom/side textures (like vanilla sandstone), not the default
+        // single cube_all texture the family system would otherwise use, so we build its TexturedModel by
+        // hand - same for chiseled/cut/smooth below, all reusing black_sandstone's own top texture where
+        // vanilla sandstone does too.
+        TexturedModel blackSandstoneModel = TexturedModel.TOP_BOTTOM_WITH_WALL.get(ModBlocks.BLACK_SANDSTONE.get());
+        blockModels.new BlockFamilyProvider(blackSandstoneModel.getMapping())
+                .fullBlock(ModBlocks.BLACK_SANDSTONE.get(), blackSandstoneModel.getTemplate())
+                .wall(ModBlocks.BLACK_SANDSTONE_WALL.get())
+                .stairs(ModBlocks.BLACK_SANDSTONE_STAIRS.get())
+                .slab(ModBlocks.BLACK_SANDSTONE_SLAB.get());
+
+        TexturedModel chiseledBlackSandstoneModel = TexturedModel.COLUMN.get(ModBlocks.CHISELED_BLACK_SANDSTONE.get())
+                .updateTextures(mapping -> {
+                    mapping.put(TextureSlot.END, TextureMapping.getBlockTexture(ModBlocks.BLACK_SANDSTONE.get(), "_top"));
+                    mapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(ModBlocks.CHISELED_BLACK_SANDSTONE.get()));
+                });
+        blockModels.new BlockFamilyProvider(chiseledBlackSandstoneModel.getMapping())
+                .fullBlock(ModBlocks.CHISELED_BLACK_SANDSTONE.get(), chiseledBlackSandstoneModel.getTemplate());
+
+        TexturedModel cutBlackSandstoneModel = TexturedModel.COLUMN.get(ModBlocks.BLACK_SANDSTONE.get())
+                .updateTextures(mapping -> mapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(ModBlocks.CUT_BLACK_SANDSTONE.get())));
+        blockModels.new BlockFamilyProvider(cutBlackSandstoneModel.getMapping())
+                .fullBlock(ModBlocks.CUT_BLACK_SANDSTONE.get(), cutBlackSandstoneModel.getTemplate())
+                .slab(ModBlocks.CUT_BLACK_SANDSTONE_SLAB.get());
+
+        TexturedModel smoothBlackSandstoneModel = TexturedModel.createAllSame(TextureMapping.getBlockTexture(ModBlocks.BLACK_SANDSTONE.get(), "_top"));
+        blockModels.new BlockFamilyProvider(smoothBlackSandstoneModel.getMapping())
+                .fullBlock(ModBlocks.SMOOTH_BLACK_SANDSTONE.get(), smoothBlackSandstoneModel.getTemplate())
+                .slab(ModBlocks.SMOOTH_BLACK_SANDSTONE_SLAB.get())
+                .stairs(ModBlocks.SMOOTH_BLACK_SANDSTONE_STAIRS.get());
+
+        // marble_bricks and cobbled_marble each get their own full family call below (base cube + their own
+        // sub-variants, correctly textured from their own block) - so here we only wire up marble's own
+        // slab/stairs/pressure plate/button, to avoid duplicate/mistextured models for the other two.
+        blockModels.family(ModBlocks.MARBLE.get())
+                .slab(ModBlocks.MARBLE_SLAB.get())
+                .stairs(ModBlocks.MARBLE_STAIRS.get())
+                .pressurePlate(ModBlocks.MARBLE_PRESSURE_PLATE.get())
+                .button(ModBlocks.MARBLE_BUTTON.get());
+        blockModels.family(ModBlocks.MARBLE_BRICKS.get()).generateFor(ModBlockFamilies.MARBLE_BRICKS);
+        blockModels.family(ModBlocks.MOSSY_MARBLE_BRICKS.get()).generateFor(ModBlockFamilies.MOSSY_MARBLE_BRICKS);
+        blockModels.family(ModBlocks.COBBLED_MARBLE.get()).generateFor(ModBlockFamilies.COBBLED_MARBLE);
 
         itemModels.generateFlatItem(ModItems.AKKUN_S1_TOTEM.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.FALNIX_S1_TOTEM.get(), ModelTemplates.FLAT_ITEM);

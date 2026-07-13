@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "newmerias2core:black_sandstone",
+  "result": {
+    "id": "newmerias2core:cut_black_sandstone"
+  }
+}
