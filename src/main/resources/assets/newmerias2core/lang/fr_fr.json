@@ -14,6 +14,10 @@
   "block.newmerias2core.deepslate_sapphire_ore": "Minerai de saphir de deepslate",
   "block.newmerias2core.sapphire_block": "Bloc de saphir",
   "item.newmerias2core.obsidian_stick": "Bâton d'obsidienne",
+  "item.newmerias2core.sapphire_sword": "Épée en saphir",
+  "item.newmerias2core.snow_walker_spawn_egg": "Œuf d'invocation de marcheur de neige",
+
+  "entity.newmerias2core.snow_walker": "Marcheur de neige",
 
   "block.newmerias2core.black_sand": "Sable noir",
   "block.newmerias2core.black_sandstone": "Grès noir",

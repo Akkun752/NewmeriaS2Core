@@ -38,6 +38,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.DEEPSLATE_SAPPHIRE_ORE);
                         output.accept(ModItems.SAPPHIRE_BLOCK);
                         output.accept(ModItems.OBSIDIAN_STICK);
+                        output.accept(ModItems.SAPPHIRE_SWORD);
+                        output.accept(ModItems.SNOW_WALKER_SPAWN_EGG);
 
                         output.accept(ModItems.BLACK_SAND);
                         output.accept(ModItems.BLACK_SANDSTONE);

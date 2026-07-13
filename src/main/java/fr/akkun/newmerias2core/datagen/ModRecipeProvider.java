@@ -73,6 +73,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.OBSIDIAN), has(Items.OBSIDIAN))
                 .save(output);
 
+        shaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SWORD.get())
+                .pattern("#")
+                .pattern("#")
+                .pattern("X")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
         twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BLACK_SANDSTONE.get(), ModBlocks.BLACK_SAND.get());
         smeltingResultFromBase(ModBlocks.SMOOTH_BLACK_SANDSTONE.get(), ModBlocks.BLACK_SANDSTONE.get());
 

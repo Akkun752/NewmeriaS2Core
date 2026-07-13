@@ -28,6 +28,9 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.SANDWICH.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.SAPPHIRE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.OBSIDIAN_STICK.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        // Custom flat texture instead of vanilla's two-colour spawn egg rendering.
+        itemModels.generateFlatItem(ModItems.SNOW_WALKER_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
         blockModels.createCropBlock(ModBlocks.RICE_CROP.get(), CropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
         blockModels.createCropBlock(ModBlocks.CHILI_CROP.get(), BeetrootBlock.AGE, 0, 1, 2, 3);
 

@@ -5,6 +5,7 @@ import fr.akkun.newmerias2core.block.ModBlocks;
 import fr.akkun.newmerias2core.creativemodetab.ModCreativeModeTabs;
 import fr.akkun.newmerias2core.data.ModDataComponents;
 import fr.akkun.newmerias2core.effect.ModEffects;
+import fr.akkun.newmerias2core.entity.ModEntityTypes;
 import fr.akkun.newmerias2core.item.ModItems;
 import fr.akkun.newmerias2core.potion.ModPotions;
 import fr.akkun.newmerias2core.rpg.RpgAttachments;
@@ -48,6 +49,8 @@ public class NewmeriaS2Core {
         ModEffects.register(modEventBus);
 
         ModPotions.register(modEventBus);
+
+        ModEntityTypes.register(modEventBus);
 
         RpgAttachments.register(modEventBus);
         RpgNetworking.register(modEventBus);

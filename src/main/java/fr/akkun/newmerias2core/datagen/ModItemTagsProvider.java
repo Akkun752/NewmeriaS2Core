@@ -2,6 +2,7 @@ package fr.akkun.newmerias2core.datagen;
 
 import fr.akkun.newmerias2core.NewmeriaS2Core;
 import fr.akkun.newmerias2core.item.ModItems;
+import fr.akkun.newmerias2core.item.ModToolTiers;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
@@ -18,5 +19,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider registries) {
         tag(ItemTags.STONE_TOOL_MATERIALS).add(ModItems.getRK(ModItems.COBBLED_MARBLE.get()));
         tag(ItemTags.SMELTS_TO_GLASS).add(ModItems.getRK(ModItems.BLACK_SAND.get()));
+
+        tag(ModToolTiers.SAPPHIRE_TOOL_MATERIALS).add(ModItems.getRK(ModItems.SAPPHIRE.get()));
+        tag(ModToolTiers.SAPPHIRE_TOOLS).add(ModItems.getRK(ModItems.SAPPHIRE_SWORD.get()));
     }
 }

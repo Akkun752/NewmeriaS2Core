@@ -48,6 +48,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModBlocks.MOSSY_MARBLE_BRICK_WALL.get(), ModBlocks.COBBLED_MARBLE_STAIRS.get(), ModBlocks.COBBLED_MARBLE_SLAB.get(),
                 ModBlocks.COBBLED_MARBLE_WALL.get(), ModBlocks.MARBLE_PRESSURE_PLATE.get(), ModBlocks.MARBLE_BUTTON.get());
 
+        addAll(BlockTags.WALLS,
+                ModBlocks.BLACK_SANDSTONE_WALL.get(), ModBlocks.MARBLE_BRICK_WALL.get(),
+                ModBlocks.MOSSY_MARBLE_BRICK_WALL.get(), ModBlocks.COBBLED_MARBLE_WALL.get());
+
         addAll(Tags.Blocks.STONES,
                 ModBlocks.MARBLE.get(), ModBlocks.COBBLED_MARBLE.get(), ModBlocks.MARBLE_SLAB.get(), ModBlocks.MARBLE_STAIRS.get(),
                 ModBlocks.MARBLE_BRICKS.get(), ModBlocks.CHISELED_MARBLE_BRICKS.get(), ModBlocks.CRACKED_MARBLE_BRICKS.get(),

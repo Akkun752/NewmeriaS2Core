@@ -1,6 +1,7 @@
 package fr.akkun.newmerias2core.rpg;
 
 import fr.akkun.newmerias2core.NewmeriaS2Core;
+import fr.akkun.newmerias2core.entity.SnowWalker;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
@@ -118,6 +119,9 @@ public class RpgEvents {
         }
         if (victim instanceof IronGolem) {
             return 10;
+        }
+        if (victim instanceof SnowWalker) {
+            return 5;
         }
         if (victim instanceof Monster || victim instanceof Enemy) {
             return 1;

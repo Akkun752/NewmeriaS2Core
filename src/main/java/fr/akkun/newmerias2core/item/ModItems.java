@@ -2,6 +2,7 @@ package fr.akkun.newmerias2core.item;
 
 import fr.akkun.newmerias2core.NewmeriaS2Core;
 import fr.akkun.newmerias2core.block.ModBlocks;
+import fr.akkun.newmerias2core.entity.ModEntityTypes;
 import fr.akkun.newmerias2core.food.ModFoods;
 import fr.akkun.newmerias2core.item.custom.TotemItem;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SpawnEggItem;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -40,6 +42,12 @@ public class ModItems {
 
     public static final DeferredItem<Item> SAPPHIRE = ITEMS.registerItem("sapphire",
             properties -> new Item(properties));
+
+    public static final DeferredItem<Item> SAPPHIRE_SWORD = ITEMS.registerItem("sapphire_sword",
+            properties -> new Item(properties.sword(ModToolTiers.SAPPHIRE, 3.0F, -2.4F)));
+
+    public static final DeferredItem<Item> SNOW_WALKER_SPAWN_EGG = ITEMS.registerItem("snow_walker_spawn_egg",
+            properties -> new SpawnEggItem(properties.spawnEgg(ModEntityTypes.SNOW_WALKER.get())));
 
     public static final DeferredItem<Item> SAPPHIRE_ORE = ITEMS.registerItem("sapphire_ore",
             properties -> new BlockItem(ModBlocks.SAPPHIRE_ORE.get(), properties.useBlockDescriptionPrefix()));
