@@ -3,16 +3,22 @@ package fr.akkun.newmerias2core.item;
 import fr.akkun.newmerias2core.NewmeriaS2Core;
 import fr.akkun.newmerias2core.block.ModBlocks;
 import fr.akkun.newmerias2core.entity.ModEntityTypes;
+import fr.akkun.newmerias2core.fluid.ModFluids;
 import fr.akkun.newmerias2core.food.ModFoods;
 import fr.akkun.newmerias2core.item.custom.TotemItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -41,6 +47,21 @@ public class ModItems {
     public static final DeferredItem<Item> SANDWICH = ITEMS.registerItem("sandwich",
             properties -> new Item(properties.food(ModFoods.SANDWICH)));
 
+    public static final DeferredItem<Item> FRIED_BEEF = ITEMS.registerItem("fried_beef",
+            properties -> new Item(properties.food(ModFoods.FRIED_BEEF)));
+    public static final DeferredItem<Item> FRIED_CHICKEN = ITEMS.registerItem("fried_chicken",
+            properties -> new Item(properties.food(ModFoods.FRIED_CHICKEN)));
+    public static final DeferredItem<Item> FRIED_COD = ITEMS.registerItem("fried_cod",
+            properties -> new Item(properties.food(ModFoods.FRIED_COD)));
+    public static final DeferredItem<Item> FRIED_MUTTON = ITEMS.registerItem("fried_mutton",
+            properties -> new Item(properties.food(ModFoods.FRIED_MUTTON)));
+    public static final DeferredItem<Item> FRIED_PORKCHOP = ITEMS.registerItem("fried_porkchop",
+            properties -> new Item(properties.food(ModFoods.FRIED_PORKCHOP)));
+    public static final DeferredItem<Item> FRIED_RABBIT = ITEMS.registerItem("fried_rabbit",
+            properties -> new Item(properties.food(ModFoods.FRIED_RABBIT)));
+    public static final DeferredItem<Item> FRIED_SALMON = ITEMS.registerItem("fried_salmon",
+            properties -> new Item(properties.food(ModFoods.FRIED_SALMON)));
+
     public static final DeferredItem<Item> SAPPHIRE = ITEMS.registerItem("sapphire",
             properties -> new Item(properties));
 
@@ -67,6 +88,50 @@ public class ModItems {
 
     public static final DeferredItem<Item> SAPPHIRE_SPATULA = ITEMS.registerItem("sapphire_spatula",
             properties -> new SpatulaItem(properties.sword(ModToolTiers.halfDurability(ModToolTiers.SAPPHIRE), 3.0F, -2.4F)));
+
+    // Same combat/kinetic-charge parameters as the vanilla netherite spear (matches this mod's
+    // "sapphire = netherite stats" design elsewhere), just on the sapphire material.
+    public static final DeferredItem<Item> SAPPHIRE_SPEAR = ITEMS.registerItem("sapphire_spear",
+            properties -> new Item(properties.spear(ModToolTiers.SAPPHIRE,
+                    1.15F, 1.2F, 0.4F, 2.5F, 9.0F, 5.5F, 5.1F, 8.75F, 4.6F)));
+    public static final DeferredItem<Item> SAPPHIRE_PICKAXE = ITEMS.registerItem("sapphire_pickaxe",
+            properties -> new Item(properties.pickaxe(ModToolTiers.SAPPHIRE, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> SAPPHIRE_AXE = ITEMS.registerItem("sapphire_axe",
+            properties -> new AxeItem(ModToolTiers.SAPPHIRE, 5.0F, -3.0F, properties));
+    public static final DeferredItem<Item> SAPPHIRE_SHOVEL = ITEMS.registerItem("sapphire_shovel",
+            properties -> new ShovelItem(ModToolTiers.SAPPHIRE, 1.5F, -3.0F, properties));
+    public static final DeferredItem<Item> SAPPHIRE_HOE = ITEMS.registerItem("sapphire_hoe",
+            properties -> new HoeItem(ModToolTiers.SAPPHIRE, -4.0F, 0.0F, properties));
+
+    // 3x3 AoE mining (see HammerEvents) - pickaxe-tier combat/mining stats on every material.
+    public static final DeferredItem<Item> WOODEN_HAMMER = ITEMS.registerItem("wooden_hammer",
+            properties -> new HammerItem(properties.pickaxe(ToolMaterial.WOOD, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> STONE_HAMMER = ITEMS.registerItem("stone_hammer",
+            properties -> new HammerItem(properties.pickaxe(ToolMaterial.STONE, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> COPPER_HAMMER = ITEMS.registerItem("copper_hammer",
+            properties -> new HammerItem(properties.pickaxe(ToolMaterial.COPPER, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> IRON_HAMMER = ITEMS.registerItem("iron_hammer",
+            properties -> new HammerItem(properties.pickaxe(ToolMaterial.IRON, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> GOLDEN_HAMMER = ITEMS.registerItem("golden_hammer",
+            properties -> new HammerItem(properties.pickaxe(ToolMaterial.GOLD, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> DIAMOND_HAMMER = ITEMS.registerItem("diamond_hammer",
+            properties -> new HammerItem(properties.pickaxe(ToolMaterial.DIAMOND, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> NETHERITE_HAMMER = ITEMS.registerItem("netherite_hammer",
+            properties -> new HammerItem(properties.fireResistant().pickaxe(ToolMaterial.NETHERITE, 1.0F, -2.8F)));
+    public static final DeferredItem<Item> SAPPHIRE_HAMMER = ITEMS.registerItem("sapphire_hammer",
+            properties -> new HammerItem(properties.pickaxe(ModToolTiers.SAPPHIRE, 1.0F, -2.8F)));
+
+    public static final DeferredItem<Item> SAPPHIRE_HELMET = ITEMS.registerItem("sapphire_helmet",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.SAPPHIRE, ArmorType.HELMET)));
+    public static final DeferredItem<Item> SAPPHIRE_CHESTPLATE = ITEMS.registerItem("sapphire_chestplate",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.SAPPHIRE, ArmorType.CHESTPLATE)));
+    public static final DeferredItem<Item> SAPPHIRE_LEGGINGS = ITEMS.registerItem("sapphire_leggings",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.SAPPHIRE, ArmorType.LEGGINGS)));
+    public static final DeferredItem<Item> SAPPHIRE_BOOTS = ITEMS.registerItem("sapphire_boots",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.SAPPHIRE, ArmorType.BOOTS)));
+
+    public static final DeferredItem<Item> OIL_BUCKET = ITEMS.registerItem("oil_bucket",
+            properties -> new BucketItem(ModFluids.OIL_SOURCE.get(), properties.craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static final DeferredItem<Item> HELL_SWORD = ITEMS.registerItem("hell_sword",
             properties -> new HellSwordItem(properties.fireResistant().sword(ModToolTiers.HELL, 3.0F, -2.4F)));

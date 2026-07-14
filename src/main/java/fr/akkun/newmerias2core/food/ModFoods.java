@@ -30,4 +30,13 @@ public class ModFoods {
     // Bread (nutrition 5, saturationModifier 0.6) + Cooked Porkchop (nutrition 8, saturationModifier 0.8)
     // combined: nutrition 13, saturation restored 6.0+12.8=18.8 -> saturationModifier = 18.8/(13*2)
     public static final FoodProperties SANDWICH = new FoodProperties.Builder().nutrition(13).saturationModifier(0.7230769f).build();
+
+    // Fried meats: 1.5x their COOKED_X vanilla nutrition/saturationModifier.
+    public static final FoodProperties FRIED_BEEF = new FoodProperties.Builder().nutrition(12).saturationModifier(1.2f).build();
+    public static final FoodProperties FRIED_CHICKEN = new FoodProperties.Builder().nutrition(9).saturationModifier(0.9f).build();
+    public static final FoodProperties FRIED_COD = new FoodProperties.Builder().nutrition(8).saturationModifier(0.9f).build();
+    public static final FoodProperties FRIED_MUTTON = new FoodProperties.Builder().nutrition(9).saturationModifier(1.2f).build();
+    public static final FoodProperties FRIED_PORKCHOP = new FoodProperties.Builder().nutrition(12).saturationModifier(1.2f).build();
+    public static final FoodProperties FRIED_RABBIT = new FoodProperties.Builder().nutrition(8).saturationModifier(0.9f).build();
+    public static final FoodProperties FRIED_SALMON = new FoodProperties.Builder().nutrition(9).saturationModifier(1.2f).build();
 }

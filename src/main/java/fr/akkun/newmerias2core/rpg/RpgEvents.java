@@ -168,6 +168,9 @@ public class RpgEvents {
     }
 
     private static void grantPoints(ServerPlayer player, int amount) {
+        if (TotemBonuses.hasMatchingTotem(player)) {
+            amount *= 2;
+        }
         RpgData data = player.getData(RpgAttachments.RPG_DATA);
         RpgData updated = data.addPoints(amount);
         if (updated.equals(data)) {

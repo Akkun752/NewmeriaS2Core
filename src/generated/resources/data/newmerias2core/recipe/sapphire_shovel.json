@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "newmerias2core:sapphire",
+    "X": "newmerias2core:obsidian_stick"
+  },
+  "pattern": [
+    "#",
+    "X",
+    "X"
+  ],
+  "result": {
+    "id": "newmerias2core:sapphire_shovel"
+  }
+}

@@ -1,11 +1,15 @@
 package fr.akkun.newmerias2core;
 
 import com.mojang.logging.LogUtils;
+import fr.akkun.newmerias2core.block.ModBlockEntities;
 import fr.akkun.newmerias2core.block.ModBlocks;
+import fr.akkun.newmerias2core.block.ModCauldronInteractions;
 import fr.akkun.newmerias2core.creativemodetab.ModCreativeModeTabs;
 import fr.akkun.newmerias2core.data.ModDataComponents;
 import fr.akkun.newmerias2core.effect.ModEffects;
 import fr.akkun.newmerias2core.entity.ModEntityTypes;
+import fr.akkun.newmerias2core.fluid.ModFluids;
+import fr.akkun.newmerias2core.frying.FryingAttachments;
 import fr.akkun.newmerias2core.item.ModItems;
 import fr.akkun.newmerias2core.potion.ModPotions;
 import fr.akkun.newmerias2core.rpg.RpgAttachments;
@@ -39,8 +43,13 @@ public class NewmeriaS2Core {
 
         ModCreativeModeTabs.register(modEventBus);
 
+        ModFluids.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModCauldronInteractions.register(modEventBus);
+
+        FryingAttachments.register(modEventBus);
 
         ModDataComponents.register(modEventBus);
         ModStats.register(modEventBus);

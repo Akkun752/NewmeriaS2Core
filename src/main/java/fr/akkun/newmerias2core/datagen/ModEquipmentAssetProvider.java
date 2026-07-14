@@ -1,9 +1,12 @@
 package fr.akkun.newmerias2core.datagen;
 
+import fr.akkun.newmerias2core.NewmeriaS2Core;
+import fr.akkun.newmerias2core.item.ModArmorMaterials;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 
@@ -20,6 +23,9 @@ public class ModEquipmentAssetProvider implements DataProvider {
     }
 
     private static void bootstrap(BiConsumer<ResourceKey<EquipmentAsset>, EquipmentClientInfo> output) {
+        output.accept(ModArmorMaterials.SAPPHIRE_ASSET_ID, EquipmentClientInfo.builder()
+                .addHumanoidLayers(Identifier.fromNamespaceAndPath(NewmeriaS2Core.MOD_ID, "sapphire"))
+                .build());
     }
 
     @Override

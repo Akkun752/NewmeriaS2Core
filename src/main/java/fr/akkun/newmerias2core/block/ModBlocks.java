@@ -3,6 +3,9 @@ package fr.akkun.newmerias2core.block;
 import fr.akkun.newmerias2core.NewmeriaS2Core;
 import fr.akkun.newmerias2core.block.custom.RiceCropBlock;
 import fr.akkun.newmerias2core.block.custom.ChiliCropBlock;
+import fr.akkun.newmerias2core.block.custom.OilCauldronBlock;
+import fr.akkun.newmerias2core.block.custom.OilFluidBlock;
+import fr.akkun.newmerias2core.fluid.ModFluids;
 import fr.akkun.newmerias2core.item.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -216,4 +219,19 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MOSSY_MARBLE_BRICK_WALL = BLOCKS.registerBlock("mossy_marble_brick_wall",
             properties -> new WallBlock(properties.mapColor(MapColor.QUARTZ).instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops().strength(2.25F, 9.0F).forceSolidOn()));
+
+    // NeoForge's own BLOCKS.registerBlock (not this file's registerBlock wrapper): gives a properly
+    // id-bound Properties like every other block here, but skips the wrapper's extra registerBlockItem
+    // call - a fluid block has no BlockItem of its own, it's placed/picked up with the bucket instead,
+    // same as vanilla water/lava.
+    public static final DeferredBlock<OilFluidBlock> OIL = BLOCKS.registerBlock("oil",
+            properties -> new OilFluidBlock(ModFluids.OIL_SOURCE.get(), properties
+                    .mapColor(MapColor.COLOR_BLACK).replaceable().noCollision().strength(100.0F)
+                    .pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY)));
+
+    // Reached only by pouring an oil bucket into a plain vanilla cauldron - never placed directly, so
+    // (like OIL above) no BlockItem of its own.
+    public static final DeferredBlock<OilCauldronBlock> OIL_CAULDRON = BLOCKS.registerBlock("oil_cauldron",
+            properties -> new OilCauldronBlock(properties.mapColor(MapColor.METAL).strength(2.0F)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL).noOcclusion().noLootTable()));
 }

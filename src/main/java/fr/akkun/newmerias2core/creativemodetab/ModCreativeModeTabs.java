@@ -28,6 +28,13 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CHILI_RICE);
                         output.accept(ModItems.CHILI_SEEDS);
                         output.accept(ModItems.SANDWICH);
+                        output.accept(ModItems.FRIED_BEEF);
+                        output.accept(ModItems.FRIED_CHICKEN);
+                        output.accept(ModItems.FRIED_COD);
+                        output.accept(ModItems.FRIED_MUTTON);
+                        output.accept(ModItems.FRIED_PORKCHOP);
+                        output.accept(ModItems.FRIED_RABBIT);
+                        output.accept(ModItems.FRIED_SALMON);
 
                         output.accept(ModPotions.createStack(Items.POTION, ModPotions.LIMONADE, ModPotions.LIMONADE_COLOR));
                         output.accept(ModPotions.createStack(Items.POTION, ModPotions.DIABOLO_SWEET_BERRIES, ModPotions.DIABOLO_SWEET_BERRIES_COLOR));
@@ -51,6 +58,27 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SAPPHIRE_SPATULA);
                         output.accept(ModItems.HELL_SWORD);
                         output.accept(ModItems.HELL_SPATULA);
+
+                        output.accept(ModItems.SAPPHIRE_SPEAR);
+                        output.accept(ModItems.SAPPHIRE_PICKAXE);
+                        output.accept(ModItems.SAPPHIRE_AXE);
+                        output.accept(ModItems.SAPPHIRE_SHOVEL);
+                        output.accept(ModItems.SAPPHIRE_HOE);
+
+                        output.accept(ModItems.WOODEN_HAMMER);
+                        output.accept(ModItems.STONE_HAMMER);
+                        output.accept(ModItems.COPPER_HAMMER);
+                        output.accept(ModItems.IRON_HAMMER);
+                        output.accept(ModItems.GOLDEN_HAMMER);
+                        output.accept(ModItems.DIAMOND_HAMMER);
+                        output.accept(ModItems.NETHERITE_HAMMER);
+                        output.accept(ModItems.SAPPHIRE_HAMMER);
+                        output.accept(ModItems.SAPPHIRE_HELMET);
+                        output.accept(ModItems.SAPPHIRE_CHESTPLATE);
+                        output.accept(ModItems.SAPPHIRE_LEGGINGS);
+                        output.accept(ModItems.SAPPHIRE_BOOTS);
+
+                        output.accept(ModItems.OIL_BUCKET);
 
                         output.accept(ModItems.BLACK_SAND);
                         output.accept(ModItems.BLACK_SANDSTONE);

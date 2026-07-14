@@ -26,6 +26,13 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.CHILI_PEPPER.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.CHILI_RICE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.SANDWICH.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.FRIED_BEEF.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.FRIED_CHICKEN.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.FRIED_COD.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.FRIED_MUTTON.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.FRIED_PORKCHOP.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.FRIED_RABBIT.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.FRIED_SALMON.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.SAPPHIRE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.OBSIDIAN_STICK.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.SAPPHIRE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -42,6 +49,41 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.SAPPHIRE_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ModItems.HELL_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ModItems.HELL_SPATULA.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+
+        // Real vanilla spear item: separate GUI icon vs. in-hand textures, dispatched by display context.
+        itemModels.generateSpear(ModItems.SAPPHIRE_SPEAR.get());
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+
+        itemModels.generateFlatItem(ModItems.WOODEN_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.STONE_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.COPPER_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.IRON_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.GOLDEN_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.DIAMOND_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.NETHERITE_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_HELMET.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_LEGGINGS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.SAPPHIRE_BOOTS.get(), ModelTemplates.FLAT_ITEM);
+
+        itemModels.generateFlatItem(ModItems.OIL_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+        // Fluid blocks render entirely through the FluidModel/RegisterFluidModelsEvent system, not the
+        // normal blockstate pipeline - but datagen still validates that every registered block has SOME
+        // blockstate entry, so we give it a trivial particle-only one (same technique vanilla uses for
+        // water/lava themselves).
+        blockModels.createParticleOnlyBlock(ModBlocks.OIL.get(), ModBlocks.OIL.get());
+        // Real model this time (unlike the fluid block above): the cauldron itself renders through the
+        // normal block model pipeline, just reusing vanilla's cauldron shape/textures with our oil_still
+        // texture as the "content" - same technique vanilla uses for lava_cauldron.
+        TextureMapping oilCauldronMapping = TextureMapping.cauldron(TextureMapping.getBlockTexture(ModBlocks.OIL.get(), "_still"));
+        blockModels.new BlockFamilyProvider(oilCauldronMapping)
+                .fullBlock(ModBlocks.OIL_CAULDRON.get(), ModelTemplates.CAULDRON_FULL);
+
         blockModels.createCropBlock(ModBlocks.RICE_CROP.get(), CropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
         blockModels.createCropBlock(ModBlocks.CHILI_CROP.get(), BeetrootBlock.AGE, 0, 1, 2, 3);
 

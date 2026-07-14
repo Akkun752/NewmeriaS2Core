@@ -165,6 +165,194 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
                 .save(output);
 
+        // Same diagonal shape vanilla uses for its own spears (e.g. diamond_spear.json).
+        shaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_SPEAR.get())
+                .pattern("  #")
+                .pattern(" X ")
+                .pattern("X  ")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_PICKAXE.get())
+                .pattern("###")
+                .pattern(" X ")
+                .pattern(" X ")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_AXE.get())
+                .pattern("##")
+                .pattern("#X")
+                .pattern(" X")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_SHOVEL.get())
+                .pattern("#")
+                .pattern("X")
+                .pattern("X")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_HOE.get())
+                .pattern("##")
+                .pattern(" X")
+                .pattern(" X")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        // Hammer: the axe shape mirrored onto both sides (5 material + 2 sticks) instead of one.
+        shaped(RecipeCategory.TOOLS, ModItems.WOODEN_HAMMER.get())
+                .pattern("###")
+                .pattern("#X#")
+                .pattern(" X ")
+                .define('#', ItemTags.PLANKS)
+                .define('X', Items.STICK)
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.STONE_HAMMER.get())
+                .pattern("###")
+                .pattern("#X#")
+                .pattern(" X ")
+                .define('#', ItemTags.STONE_TOOL_MATERIALS)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Blocks.COBBLESTONE), has(Blocks.COBBLESTONE))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.COPPER_HAMMER.get())
+                .pattern("###")
+                .pattern("#X#")
+                .pattern(" X ")
+                .define('#', Items.COPPER_INGOT)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.IRON_HAMMER.get())
+                .pattern("###")
+                .pattern("#X#")
+                .pattern(" X ")
+                .define('#', Items.IRON_INGOT)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.GOLDEN_HAMMER.get())
+                .pattern("###")
+                .pattern("#X#")
+                .pattern(" X ")
+                .define('#', Items.GOLD_INGOT)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.DIAMOND_HAMMER.get())
+                .pattern("###")
+                .pattern("#X#")
+                .pattern(" X ")
+                .define('#', Items.DIAMOND)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(output);
+
+        shaped(RecipeCategory.TOOLS, ModItems.SAPPHIRE_HAMMER.get())
+                .pattern("###")
+                .pattern("#X#")
+                .pattern(" X ")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        // Not using the vanilla netheriteSmithing() helper: see the netherite spatula comment above.
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ModItems.DIAMOND_HAMMER.get()),
+                        tag(ItemTags.NETHERITE_TOOL_MATERIALS), RecipeCategory.TOOLS, ModItems.NETHERITE_HAMMER.get())
+                .unlocks("has_netherite_ingot", has(ItemTags.NETHERITE_TOOL_MATERIALS))
+                .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(ModItems.NETHERITE_HAMMER.get()) + "_smithing");
+
+        shaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_HELMET.get())
+                .pattern("###")
+                .pattern("# #")
+                .define('#', ModItems.SAPPHIRE.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_CHESTPLATE.get())
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.SAPPHIRE.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_LEGGINGS.get())
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.SAPPHIRE.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        shaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_BOOTS.get())
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.SAPPHIRE.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        // Any arrangement works - shapeless recipes don't care about slot positions.
+        shapeless(RecipeCategory.MISC, ModItems.OIL_BUCKET.get())
+                .requires(Items.WATER_BUCKET)
+                .requires(Items.WHEAT_SEEDS, 8)
+                .unlockedBy(getHasName(Items.WATER_BUCKET), has(Items.WATER_BUCKET))
+                .save(output);
+
+        // Vanilla has no crafting recipe for chainmail armor (only villager trades) - adding our own,
+        // using iron nuggets as the "ingot" stand-in, in the standard armor shapes. Saved explicitly
+        // under our own namespace: the no-arg save(output) would otherwise derive the recipe id from
+        // the crafted item's OWN registry key, i.e. "minecraft:chainmail_helmet".
+        shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_HELMET)
+                .pattern("###")
+                .pattern("# #")
+                .define('#', Items.IRON_NUGGET)
+                .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
+                .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(Items.CHAINMAIL_HELMET));
+
+        shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_CHESTPLATE)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', Items.IRON_NUGGET)
+                .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
+                .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(Items.CHAINMAIL_CHESTPLATE));
+
+        shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_LEGGINGS)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', Items.IRON_NUGGET)
+                .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
+                .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(Items.CHAINMAIL_LEGGINGS));
+
+        shaped(RecipeCategory.COMBAT, Items.CHAINMAIL_BOOTS)
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', Items.IRON_NUGGET)
+                .unlockedBy(getHasName(Items.IRON_NUGGET), has(Items.IRON_NUGGET))
+                .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(Items.CHAINMAIL_BOOTS));
+
         twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, ModBlocks.BLACK_SANDSTONE.get(), ModBlocks.BLACK_SAND.get());
         smeltingResultFromBase(ModBlocks.SMOOTH_BLACK_SANDSTONE.get(), ModBlocks.BLACK_SANDSTONE.get());
 
