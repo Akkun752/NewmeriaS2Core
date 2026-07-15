@@ -1,11 +1,15 @@
 package fr.akkun.newmerias2core.rpg.network;
 
+import fr.akkun.newmerias2core.client.rpg.ClientCompanionHandler;
 import fr.akkun.newmerias2core.rpg.RpgAttachments;
 import fr.akkun.newmerias2core.rpg.RpgAttributeModifiers;
 import fr.akkun.newmerias2core.rpg.RpgData;
 import fr.akkun.newmerias2core.rpg.RpgSpell;
 import fr.akkun.newmerias2core.rpg.RpgStat;
-import fr.akkun.newmerias2core.rpg.SpellCasting;
+import fr.akkun.newmerias2core.rpg.companion.CompanionForm;
+import fr.akkun.newmerias2core.rpg.companion.CompanionManager;
+import fr.akkun.newmerias2core.rpg.companion.network.OpenCompanionMenuPayload;
+import fr.akkun.newmerias2core.rpg.companion.network.SummonCompanionPayload;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -21,7 +25,8 @@ public class RpgNetworking {
         PayloadRegistrar registrar = event.registrar("1");
         registrar.playToServer(SpendStatPointPayload.TYPE, SpendStatPointPayload.STREAM_CODEC, RpgNetworking::handleSpendStatPoint);
         registrar.playToServer(SelectSpellPayload.TYPE, SelectSpellPayload.STREAM_CODEC, RpgNetworking::handleSelectSpell);
-        registrar.playToServer(CastSpellPayload.TYPE, CastSpellPayload.STREAM_CODEC, RpgNetworking::handleCastSpell);
+        registrar.playToServer(SummonCompanionPayload.TYPE, SummonCompanionPayload.STREAM_CODEC, RpgNetworking::handleSummonCompanion);
+        registrar.playToClient(OpenCompanionMenuPayload.TYPE, OpenCompanionMenuPayload.STREAM_CODEC, RpgNetworking::handleOpenCompanionMenu);
     }
 
     private static void handleSpendStatPoint(SpendStatPointPayload payload, IPayloadContext context) {
@@ -56,10 +61,18 @@ public class RpgNetworking {
         player.setData(RpgAttachments.RPG_DATA, data.withSelectedSpell(spellOrdinal));
     }
 
-    private static void handleCastSpell(CastSpellPayload payload, IPayloadContext context) {
+    private static void handleSummonCompanion(SummonCompanionPayload payload, IPayloadContext context) {
         if (!(context.player() instanceof ServerPlayer player)) {
             return;
         }
-        SpellCasting.cast(player);
+        int formOrdinal = payload.form();
+        if (formOrdinal < 0 || formOrdinal >= CompanionForm.values().length) {
+            return;
+        }
+        CompanionManager.summon(player, CompanionForm.values()[formOrdinal]);
+    }
+
+    private static void handleOpenCompanionMenu(OpenCompanionMenuPayload payload, IPayloadContext context) {
+        context.enqueueWork(ClientCompanionHandler::openMenu);
     }
 }

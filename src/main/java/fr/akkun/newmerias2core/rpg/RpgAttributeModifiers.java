@@ -21,13 +21,13 @@ public class RpgAttributeModifiers {
 
     public static void apply(ServerPlayer player, RpgData data) {
         applyModifier(player, Attributes.ATTACK_DAMAGE, FORCE_ATTACK_DAMAGE,
-                Math.max(0, data.forceLevel() - 1), AttributeModifier.Operation.ADD_VALUE);
+                data.forceLevel(), AttributeModifier.Operation.ADD_VALUE);
 
         applyModifier(player, Attributes.MAX_HEALTH, RESISTANCE_MAX_HEALTH,
-                Math.max(0, data.resistanceLevel() - 1) * 4.0, AttributeModifier.Operation.ADD_VALUE);
+                data.resistanceLevel() * 4.0, AttributeModifier.Operation.ADD_VALUE);
 
         applyModifier(player, Attributes.MOVEMENT_SPEED, SPEED_MOVEMENT,
-                (data.speedLevel() - 1) * 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+                data.speedLevel() * 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
         applyModifier(player, Attributes.WATER_MOVEMENT_EFFICIENCY, SPEED_WATER_EFFICIENCY,
                 waterEfficiencyBonus(data.speedLevel()), AttributeModifier.Operation.ADD_VALUE);
@@ -38,33 +38,39 @@ public class RpgAttributeModifiers {
      * (0..1, same lever as Depth Strider) is the closest analog to reduce water drag.
      */
     private static double waterEfficiencyBonus(int speedLevel) {
-        if (speedLevel >= 5) {
+        if (speedLevel >= 4) {
             return 0.65;
         }
-        if (speedLevel >= 3) {
+        if (speedLevel >= 2) {
             return 0.35;
         }
         return 0.0;
     }
 
     public static double miningSpeedMultiplier(int forceLevel) {
-        if (forceLevel >= 6) {
-            return 2.0;
+        if (forceLevel >= 5) {
+            return 1.5;
         }
         if (forceLevel >= 4) {
-            return 1.5;
+            return 1.4;
+        }
+        if (forceLevel >= 3) {
+            return 1.3;
         }
         if (forceLevel >= 2) {
             return 1.2;
+        }
+        if (forceLevel >= 1) {
+            return 1.1;
         }
         return 1.0;
     }
 
     public static double xpMultiplier(int magicLevel) {
-        if (magicLevel >= 6) {
+        if (magicLevel >= 5) {
             return 2.0;
         }
-        if (magicLevel >= 4) {
+        if (magicLevel >= 3) {
             return 1.5;
         }
         return 1.0;

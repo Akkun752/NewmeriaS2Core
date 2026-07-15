@@ -6,8 +6,10 @@ import fr.akkun.newmerias2core.entity.ModEntityTypes;
 import fr.akkun.newmerias2core.fluid.ModFluids;
 import fr.akkun.newmerias2core.food.ModFoods;
 import fr.akkun.newmerias2core.item.custom.TotemItem;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.Unit;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
@@ -121,6 +123,24 @@ public class ModItems {
     public static final DeferredItem<Item> SAPPHIRE_HAMMER = ITEMS.registerItem("sapphire_hammer",
             properties -> new HammerItem(properties.pickaxe(ModToolTiers.SAPPHIRE, 1.0F, -2.8F)));
 
+    // Casts the selected spell on right click (see WandItem); durability = same as that tier's tool.
+    public static final DeferredItem<Item> WOODEN_WAND = ITEMS.registerItem("wooden_wand",
+            properties -> new WandItem(properties.durability(ToolMaterial.WOOD.durability())));
+    public static final DeferredItem<Item> STONE_WAND = ITEMS.registerItem("stone_wand",
+            properties -> new WandItem(properties.durability(ToolMaterial.STONE.durability())));
+    public static final DeferredItem<Item> COPPER_WAND = ITEMS.registerItem("copper_wand",
+            properties -> new WandItem(properties.durability(ToolMaterial.COPPER.durability())));
+    public static final DeferredItem<Item> IRON_WAND = ITEMS.registerItem("iron_wand",
+            properties -> new WandItem(properties.durability(ToolMaterial.IRON.durability())));
+    public static final DeferredItem<Item> GOLDEN_WAND = ITEMS.registerItem("golden_wand",
+            properties -> new WandItem(properties.durability(ToolMaterial.GOLD.durability())));
+    public static final DeferredItem<Item> DIAMOND_WAND = ITEMS.registerItem("diamond_wand",
+            properties -> new WandItem(properties.durability(ToolMaterial.DIAMOND.durability())));
+    public static final DeferredItem<Item> NETHERITE_WAND = ITEMS.registerItem("netherite_wand",
+            properties -> new WandItem(properties.fireResistant().durability(ToolMaterial.NETHERITE.durability())));
+    public static final DeferredItem<Item> SAPPHIRE_WAND = ITEMS.registerItem("sapphire_wand",
+            properties -> new WandItem(properties.durability(ModToolTiers.SAPPHIRE.durability())));
+
     public static final DeferredItem<Item> SAPPHIRE_HELMET = ITEMS.registerItem("sapphire_helmet",
             properties -> new Item(properties.humanoidArmor(ModArmorMaterials.SAPPHIRE, ArmorType.HELMET)));
     public static final DeferredItem<Item> SAPPHIRE_CHESTPLATE = ITEMS.registerItem("sapphire_chestplate",
@@ -129,6 +149,13 @@ public class ModItems {
             properties -> new Item(properties.humanoidArmor(ModArmorMaterials.SAPPHIRE, ArmorType.LEGGINGS)));
     public static final DeferredItem<Item> SAPPHIRE_BOOTS = ITEMS.registerItem("sapphire_boots",
             properties -> new Item(properties.humanoidArmor(ModArmorMaterials.SAPPHIRE, ArmorType.BOOTS)));
+
+    // Same ArmorMaterial as the humanoid pieces above - vanilla itself reuses one material across
+    // humanoid/horse/nautilus armor (e.g. ArmorMaterials.DIAMOND for all of them), no separate stats.
+    public static final DeferredItem<Item> SAPPHIRE_HORSE_ARMOR = ITEMS.registerItem("sapphire_horse_armor",
+            properties -> new Item(properties.horseArmor(ModArmorMaterials.SAPPHIRE)));
+    public static final DeferredItem<Item> SAPPHIRE_NAUTILUS_ARMOR = ITEMS.registerItem("sapphire_nautilus_armor",
+            properties -> new Item(properties.nautilusArmor(ModArmorMaterials.SAPPHIRE)));
 
     public static final DeferredItem<Item> OIL_BUCKET = ITEMS.registerItem("oil_bucket",
             properties -> new BucketItem(ModFluids.OIL_SOURCE.get(), properties.craftRemainder(Items.BUCKET).stacksTo(1)));
@@ -222,6 +249,17 @@ public class ModItems {
             properties -> new TotemItem(properties.rarity(Rarity.EPIC).stacksTo(1), "item.newmerias2core.woohtyti_s1_totem.description"));
     public static final DeferredItem<Item> BATS_S1_TOTEM = ITEMS.registerItem("bats_s1_totem",
             properties -> new TotemItem(properties.rarity(Rarity.EPIC).stacksTo(1), "item.newmerias2core.bats_s1_totem.description"));
+
+    // Special items, uncraftable like the totems above: a Brush/Spatula that also works as a Wand
+    // (their normal tool behaviour always takes priority; casting is only a fallback), and never
+    // breaks - UNBREAKABLE makes ItemStack.isDamageableItem() false, so the hurtAndBreak call on a
+    // successful cast (or on brushing/finish-cooking) is a no-op.
+    public static final DeferredItem<Item> VASSILY_BRUSH = ITEMS.registerItem("vassily_brush",
+            properties -> new BrushWandItem(properties.rarity(Rarity.EPIC).durability(ToolMaterial.DIAMOND.durability())
+                    .component(DataComponents.UNBREAKABLE, Unit.INSTANCE)));
+    public static final DeferredItem<Item> SKY_SPATULA = ITEMS.registerItem("sky_spatula",
+            properties -> new SpatulaWandItem(properties.rarity(Rarity.EPIC).durability(ToolMaterial.DIAMOND.durability())
+                    .component(DataComponents.UNBREAKABLE, Unit.INSTANCE)));
 
     public static ResourceKey<Item> getRK(Item item) {
         return BuiltInRegistries.ITEM.getResourceKey(item).get();

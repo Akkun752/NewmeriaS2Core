@@ -25,7 +25,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 ModItems.getRK(ModItems.SAPPHIRE_SWORD.get()), ModItems.getRK(ModItems.SAPPHIRE_SPATULA.get()),
                 ModItems.getRK(ModItems.SAPPHIRE_SPEAR.get()), ModItems.getRK(ModItems.SAPPHIRE_PICKAXE.get()),
                 ModItems.getRK(ModItems.SAPPHIRE_AXE.get()), ModItems.getRK(ModItems.SAPPHIRE_SHOVEL.get()),
-                ModItems.getRK(ModItems.SAPPHIRE_HOE.get()), ModItems.getRK(ModItems.SAPPHIRE_HAMMER.get()));
+                ModItems.getRK(ModItems.SAPPHIRE_HOE.get()), ModItems.getRK(ModItems.SAPPHIRE_HAMMER.get()),
+                ModItems.getRK(ModItems.SAPPHIRE_WAND.get()));
 
         tag(ModToolTiers.HELL_TOOLS).add(ModItems.getRK(ModItems.HELL_SWORD.get()), ModItems.getRK(ModItems.HELL_SPATULA.get()));
 

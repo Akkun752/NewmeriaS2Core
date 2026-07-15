@@ -46,6 +46,7 @@ public class RpgHudLayer {
         event.wrapLayer(VanillaGuiLayers.PLAYER_HEALTH, layer -> shift(layer, 0, -SHIFT_UP));
         event.wrapLayer(VanillaGuiLayers.ARMOR_LEVEL, layer -> shift(layer, 0, -SHIFT_UP));
         event.wrapLayer(VanillaGuiLayers.FOOD_LEVEL, layer -> shift(layer, 0, -SHIFT_UP));
+        event.wrapLayer(VanillaGuiLayers.VEHICLE_HEALTH, layer -> shift(layer, 0, -SHIFT_UP));
         event.wrapLayer(VanillaGuiLayers.AIR_LEVEL, layer -> shift(layer, 0, -SHIFT_UP));
         event.wrapLayer(VanillaGuiLayers.EXPERIENCE_LEVEL, layer -> shift(layer, -NUMBER_SHIFT_X, 0));
     }

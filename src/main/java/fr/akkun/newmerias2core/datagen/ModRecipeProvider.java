@@ -282,6 +282,69 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlocks("has_netherite_ingot", has(ItemTags.NETHERITE_TOOL_MATERIALS))
                 .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(ModItems.NETHERITE_HAMMER.get()) + "_smithing");
 
+        // Wand: same diagonal shape as the spear, but with a single stick instead of two.
+        shaped(RecipeCategory.MISC, ModItems.WOODEN_WAND.get())
+                .pattern(" #")
+                .pattern("X ")
+                .define('#', ItemTags.PLANKS)
+                .define('X', Items.STICK)
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.STONE_WAND.get())
+                .pattern(" #")
+                .pattern("X ")
+                .define('#', ItemTags.STONE_TOOL_MATERIALS)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Blocks.COBBLESTONE), has(Blocks.COBBLESTONE))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.COPPER_WAND.get())
+                .pattern(" #")
+                .pattern("X ")
+                .define('#', Items.COPPER_INGOT)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.IRON_WAND.get())
+                .pattern(" #")
+                .pattern("X ")
+                .define('#', Items.IRON_INGOT)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.GOLDEN_WAND.get())
+                .pattern(" #")
+                .pattern("X ")
+                .define('#', Items.GOLD_INGOT)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.DIAMOND_WAND.get())
+                .pattern(" #")
+                .pattern("X ")
+                .define('#', Items.DIAMOND)
+                .define('X', Items.STICK)
+                .unlockedBy(getHasName(Items.DIAMOND), has(Items.DIAMOND))
+                .save(output);
+
+        shaped(RecipeCategory.MISC, ModItems.SAPPHIRE_WAND.get())
+                .pattern(" #")
+                .pattern("X ")
+                .define('#', ModItems.SAPPHIRE.get())
+                .define('X', ModItems.OBSIDIAN_STICK.get())
+                .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
+                .save(output);
+
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.of(ModItems.DIAMOND_WAND.get()),
+                        tag(ItemTags.NETHERITE_TOOL_MATERIALS), RecipeCategory.MISC, ModItems.NETHERITE_WAND.get())
+                .unlocks("has_netherite_ingot", has(ItemTags.NETHERITE_TOOL_MATERIALS))
+                .save(output, NewmeriaS2Core.MOD_ID + ":" + getItemName(ModItems.NETHERITE_WAND.get()) + "_smithing");
+
         shaped(RecipeCategory.COMBAT, ModItems.SAPPHIRE_HELMET.get())
                 .pattern("###")
                 .pattern("# #")

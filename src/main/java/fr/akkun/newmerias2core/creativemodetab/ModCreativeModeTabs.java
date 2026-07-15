@@ -77,6 +77,17 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SAPPHIRE_CHESTPLATE);
                         output.accept(ModItems.SAPPHIRE_LEGGINGS);
                         output.accept(ModItems.SAPPHIRE_BOOTS);
+                        output.accept(ModItems.SAPPHIRE_HORSE_ARMOR);
+                        output.accept(ModItems.SAPPHIRE_NAUTILUS_ARMOR);
+
+                        output.accept(ModItems.WOODEN_WAND);
+                        output.accept(ModItems.STONE_WAND);
+                        output.accept(ModItems.COPPER_WAND);
+                        output.accept(ModItems.IRON_WAND);
+                        output.accept(ModItems.GOLDEN_WAND);
+                        output.accept(ModItems.DIAMOND_WAND);
+                        output.accept(ModItems.NETHERITE_WAND);
+                        output.accept(ModItems.SAPPHIRE_WAND);
 
                         output.accept(ModItems.OIL_BUCKET);
 
@@ -117,6 +128,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.FALNIX_S1_TOTEM);
                         output.accept(ModItems.RAPHAAILE_S1_TOTEM);
                         output.accept(ModItems.WOOHTYTI_S1_TOTEM);
+
+                        output.accept(ModItems.VASSILY_BRUSH);
+                        output.accept(ModItems.SKY_SPATULA);
                     }).build());
 
     public static void register(IEventBus eventBus) {

@@ -53,7 +53,17 @@
   "item.newmerias2core.sapphire_chestplate": "Sapphire Chestplate",
   "item.newmerias2core.sapphire_leggings": "Sapphire Leggings",
   "item.newmerias2core.sapphire_boots": "Sapphire Boots",
-  "item.newmerias2core.oil_bucket": "Bucket of Oil",
+  "item.newmerias2core.sapphire_horse_armor": "Sapphire Horse Armor",
+  "item.newmerias2core.sapphire_nautilus_armor": "Sapphire Nautilus Armor",
+  "item.newmerias2core.wooden_wand": "Wooden Wand",
+  "item.newmerias2core.stone_wand": "Stone Wand",
+  "item.newmerias2core.copper_wand": "Copper Wand",
+  "item.newmerias2core.iron_wand": "Iron Wand",
+  "item.newmerias2core.golden_wand": "Golden Wand",
+  "item.newmerias2core.diamond_wand": "Diamond Wand",
+  "item.newmerias2core.netherite_wand": "Netherite Wand",
+  "item.newmerias2core.sapphire_wand": "Sapphire Wand",
+  "item.newmerias2core.oil_bucket": "Oil Bucket",
   "block.newmerias2core.oil": "Oil",
   "block.newmerias2core.oil_cauldron": "Cauldron of Oil",
 
@@ -110,6 +120,9 @@
   "item.newmerias2core.bats_s1_totem": "Bats Totem",
   "item.newmerias2core.bats_s1_totem.description": "Bats' Newmeria Season 1 Totem",
 
+  "item.newmerias2core.vassily_brush": "Vassily's Brush",
+  "item.newmerias2core.sky_spatula": "Sky's Spatula",
+
   "rpg.newmerias2core.stat.force": "Force",
   "rpg.newmerias2core.stat.resistance": "Resistance",
   "rpg.newmerias2core.stat.speed": "Speed",
@@ -124,17 +137,24 @@
   "gui.newmerias2core.rpg_level": "%s",
 
   "key.newmerias2core.open_stats": "Open RPG Stats",
-  "key.newmerias2core.cast_spell": "Cast Spell (Ctrl: Open Magic Menu)",
+  "key.newmerias2core.open_magic": "Show Spell Wheel",
 
   "rpg.newmerias2core.spell.lightning": "Lightning",
   "rpg.newmerias2core.spell.teleport": "Teleport",
+  "rpg.newmerias2core.spell.friendship": "Friendship",
   "rpg.newmerias2core.spell.fireball": "Fireball",
+  "rpg.newmerias2core.spell.ink_friend": "Ink Friend",
   "rpg.newmerias2core.spell.on_cooldown": "%s is on cooldown (%ss left)",
 
-  "gui.newmerias2core.magic.title": "Magic Spells",
-  "gui.newmerias2core.magic.select": "Select",
-  "gui.newmerias2core.magic.selected": "Selected",
-  "gui.newmerias2core.magic.locked": "Locked",
+  "gui.newmerias2core.magic_wheel.title": "Magic Spells",
+
+  "gui.newmerias2core.companion.title": "Ink Friend",
+  "gui.newmerias2core.companion.summon": "Summon",
+  "rpg.newmerias2core.companion.wolf": "Wolf",
+  "rpg.newmerias2core.companion.zombie": "Zombie",
+  "rpg.newmerias2core.companion.horse": "Horse",
+  "rpg.newmerias2core.companion.iron_golem": "Iron Golem",
+  "rpg.newmerias2core.companion.nautilus": "Nautilus",
 
   "commands.newmerias2core.rpg.add_points": "Added %s RPG points to %s (now level %s, %s stat point(s) available)",
   "commands.newmerias2core.rpg.add_level": "Added %s RPG level(s) to %s (now level %s, %s stat point(s) available)",

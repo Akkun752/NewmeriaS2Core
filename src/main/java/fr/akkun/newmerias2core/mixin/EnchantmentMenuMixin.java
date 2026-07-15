@@ -8,11 +8,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 /**
- * Magic 2+ players don't need Lapis Lazuli to enchant. Vanilla's
- * {@code EnchantmentMenu#clickMenuButton} gates the Lapis requirement behind
- * {@code !player.hasInfiniteMaterials()} (already bypassed for creative players) - redirecting
- * only the FIRST call to that method (the Lapis check; the second call, further down, gates the
- * XP-level requirement and must stay untouched) lets Magic 2+ players skip just that one check.
+ * Magic 2+ players don't need Lapis Lazuli to enchant at all. Vanilla's
+ * {@code EnchantmentMenu#clickMenuButton} gates on
+ * {@code (currency.isEmpty() || currency.getCount() < enchantmentCost) && !player.hasInfiniteMaterials()}
+ * - redirecting only the FIRST call to {@code hasInfiniteMaterials()} (the currency check; the
+ * second call, further down, gates the XP-level requirement and must stay untouched) makes that
+ * whole condition false for Magic 2+ players regardless of what's actually in the currency slot,
+ * short-circuiting past the presence/count check entirely rather than needing to fake its contents.
  */
 @Mixin(EnchantmentMenu.class)
 public abstract class EnchantmentMenuMixin {

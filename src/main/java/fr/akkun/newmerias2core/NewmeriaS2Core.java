@@ -13,6 +13,7 @@ import fr.akkun.newmerias2core.frying.FryingAttachments;
 import fr.akkun.newmerias2core.item.ModItems;
 import fr.akkun.newmerias2core.potion.ModPotions;
 import fr.akkun.newmerias2core.rpg.RpgAttachments;
+import fr.akkun.newmerias2core.rpg.companion.CompanionAttachments;
 import fr.akkun.newmerias2core.rpg.network.RpgNetworking;
 import fr.akkun.newmerias2core.sound.ModSounds;
 import fr.akkun.newmerias2core.stat.ModStats;
@@ -62,6 +63,7 @@ public class NewmeriaS2Core {
         ModEntityTypes.register(modEventBus);
 
         RpgAttachments.register(modEventBus);
+        CompanionAttachments.register(modEventBus);
         RpgNetworking.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);

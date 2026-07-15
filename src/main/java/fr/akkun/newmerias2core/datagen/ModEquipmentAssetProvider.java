@@ -23,8 +23,13 @@ public class ModEquipmentAssetProvider implements DataProvider {
     }
 
     private static void bootstrap(BiConsumer<ResourceKey<EquipmentAsset>, EquipmentClientInfo> output) {
+        Identifier sapphireTexture = Identifier.fromNamespaceAndPath(NewmeriaS2Core.MOD_ID, "sapphire");
+        // Same single asset bundles every layer type, exactly like vanilla's own equipment/diamond.json
+        // (humanoid + horse_body + nautilus_body all in one file, reusing the same texture id).
         output.accept(ModArmorMaterials.SAPPHIRE_ASSET_ID, EquipmentClientInfo.builder()
-                .addHumanoidLayers(Identifier.fromNamespaceAndPath(NewmeriaS2Core.MOD_ID, "sapphire"))
+                .addHumanoidLayers(sapphireTexture)
+                .addLayers(EquipmentClientInfo.LayerType.HORSE_BODY, new EquipmentClientInfo.Layer(sapphireTexture))
+                .addLayers(EquipmentClientInfo.LayerType.NAUTILUS_BODY, new EquipmentClientInfo.Layer(sapphireTexture))
                 .build());
     }
 

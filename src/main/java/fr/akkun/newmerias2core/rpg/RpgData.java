@@ -10,10 +10,10 @@ import net.minecraft.network.codec.StreamCodec;
 public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
                        int forceLevel, int resistanceLevel, int speedLevel, int magicLevel,
                        int selectedSpell) {
-    public static final int MIN_RPG_LEVEL = 1;
+    public static final int MIN_RPG_LEVEL = 0;
     public static final int MAX_RPG_LEVEL = 20;
-    public static final int MIN_STAT_LEVEL = 1;
-    public static final int MAX_STAT_LEVEL = 6;
+    public static final int MIN_STAT_LEVEL = 0;
+    public static final int MAX_STAT_LEVEL = 5;
     public static final int NO_SPELL = -1;
 
     public static final RpgData DEFAULT = new RpgData(MIN_RPG_LEVEL, 0, 0,
@@ -42,8 +42,10 @@ public record RpgData(int level, int pointsIntoLevel, int unspentStatPoints,
             RpgData::new
     );
 
+    /** Level 0 -> 1 only costs a single RPG point (an onboarding freebie); every level after that
+     *  follows the normal (level+1)*100 scaling. */
     public static int pointsToReachNextLevel(int level) {
-        return (level + 1) * 100;
+        return level == 0 ? 1 : (level + 1) * 100;
     }
 
     public RpgData withForceLevel(int newLevel) {

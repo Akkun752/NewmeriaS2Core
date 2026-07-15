@@ -18,11 +18,6 @@ public class RpgAttachments {
                     .sync(RpgData.STREAM_CODEC)
                     .build());
 
-    public static final DeferredHolder<AttachmentType<?>, AttachmentType<PlacedBlocksData>> PLACED_TRACKED_BLOCKS = ATTACHMENT_TYPES.register("placed_tracked_blocks",
-            () -> AttachmentType.builder(PlacedBlocksData::empty)
-                    .serialize(PlacedBlocksData.MAP_CODEC)
-                    .build());
-
     public static void register(IEventBus eventBus) {
         ATTACHMENT_TYPES.register(eventBus);
     }

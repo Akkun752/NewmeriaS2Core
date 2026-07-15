@@ -5,6 +5,14 @@
   "mixins": [
     "EnchantmentMenuMixin"
   ],
+  "client": [
+    "client.EnchantmentScreenMixin",
+    "client.WolfRendererMixin",
+    "client.AbstractZombieRendererMixin",
+    "client.HorseRendererMixin",
+    "client.IronGolemRendererMixin",
+    "client.NautilusRendererMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
